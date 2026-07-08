@@ -5,7 +5,7 @@ This repository contains the code for the article:
 
 ## Summary
 
-TODO: write summary and add a figure to the summary
+In this study we develop deep learning emulators of the regional climate model Modèle Atmosphérique Régional (MAR) version 3.14 to predict catchment-scale meltwater runoff from four catchments on the Greenland Ice Sheet. We then fine-tune these emulators with in-situ observations of meltwater runoff to produce transfer learning models. We find that conducting transfer learning reduces error in meltwater runoff predictions by 89.5%, as compared to our emulators.
 
 ## Repository structure
 
