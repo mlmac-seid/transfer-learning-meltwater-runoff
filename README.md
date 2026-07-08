@@ -1,4 +1,4 @@
-# Transfer learning models to predict Greenland Ice Sheet catchment-scale meltwater runoff
+# Modeling Greenland Ice Sheet catchment-scale meltwater runoff using transfer learning
 
 This repository contains the code for the article:
 > Maciel-Seidman, M.L. and Ryan, J.C., **Transfer learning improves simulation of Greenland Ice Sheet meltwater runoff**. *Journal of Geophysical Research: Machine Learning and Computation* (submitted)
