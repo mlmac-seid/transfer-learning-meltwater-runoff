@@ -17,7 +17,6 @@ os.chdir('/Users/mlm211/Documents/DeepMelt/catchment-scale/catchment_training_ex
 # Create log file
 catchment_training_log_rio_behar = 'catchment_training_experiment_log_rio_behar.csv'
 catchment_training_log_minturn = 'catchment_training_experiment_log_minturn.csv'
-catchment_training_log_north = 'catchment_training_experiment_log_north.csv'
 catchment_training_log_ak4 = 'catchment_training_experiment_log_ak4.csv'
 header1 = ['mlp_type',
            'predictors',

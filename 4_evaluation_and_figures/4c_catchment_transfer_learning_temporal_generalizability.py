@@ -22,10 +22,6 @@ catchments = {
     "Minturn": {
         "data": "/Users/maya/Documents/Duke University/DeepMelt/catchment-scale/catchment in-situ data/minturn_catchment_mar_tl.csv",
         "base_model": "./catchment_MAR_emulators/minturn_mar_mlp.keras"
-    },
-    "North": {
-        "data": "/Users/maya/Documents/Duke University/DeepMelt/catchment-scale/catchment in-situ data/north_catchment_mar_tl.csv",
-        "base_model": "./catchment_MAR_emulators/north_mar_mlp.keras"
     }
 }
 
@@ -33,8 +29,7 @@ catchments = {
 tl_training_sets = {
     "AK4": pd.read_csv('catchment in-situ data/ak4_catchment_mar_tl.csv'),
     "Rio Behar": pd.read_csv('catchment in-situ data/rio_behar_catchment_mar_tl.csv'),
-    "Minturn": pd.read_csv('catchment in-situ data/minturn_catchment_mar_tl.csv'),
-    "North": pd.read_csv('catchment in-situ data/north_catchment_mar_tl.csv')
+    "Minturn": pd.read_csv('catchment in-situ data/minturn_catchment_mar_tl.csv')
 }
 
 features = ['t2m', 'ts', 'al2', 'swd']
@@ -234,9 +229,7 @@ years_order = {
     "AK4": sorted(ensemble_results_df.loc[
         ensemble_results_df["Catchment"] == "AK4", "Year"].unique()),
     "Minturn": sorted(ensemble_results_df.loc[
-        ensemble_results_df["Catchment"] == "Minturn", "Year"].unique()),
-    "North": sorted(ensemble_results_df.loc[
-        ensemble_results_df["Catchment"] == "North", "Year"].unique())
+        ensemble_results_df["Catchment"] == "Minturn", "Year"].unique())
 }
 
 # Common y-axis limits for all subplots

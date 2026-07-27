@@ -16,13 +16,11 @@ os.chdir('/Users/mlm211/Documents/DeepMelt/catchment-scale')
 rb_mar = pd.read_csv('./Rio_Behar_catchment_variables/rb_catchment_2000_2024_vars.csv')
 ak4_mar = pd.read_csv('./AK4_catchment_variables/ak4_catchment_2000_2024_vars.csv')
 minturn_mar = pd.read_csv('./Minturn_catchment_variables/minturn_catchment_2000_2024_vars.csv')
-north_mar = pd.read_csv('./North_catchment_variables/north_catchment_2000_2024_vars.csv')
 
 # Load models
 rb_model = tf.keras.models.load_model('catchment_MAR_emulators/rb_mar_mlp.keras')
 ak4_model = tf.keras.models.load_model('catchment_MAR_emulators/ak4_mar_mlp.keras')
 minturn_model = tf.keras.models.load_model('catchment_MAR_emulators/minturn_mar_mlp.keras')
-north_model = tf.keras.models.load_model('catchment_MAR_emulators/north_mar_mlp.keras')
 
 
 # Catchment configuration
@@ -37,11 +35,7 @@ catchments = [
 
     ("Minturn", minturn_mar, minturn_model,
      "catchment_MAR_emulators/minturn_mar_xscaler.pkl",
-     "catchment_MAR_emulators/minturn_mar_yscaler.pkl"),
-
-    ("North", north_mar, north_model,
-     "catchment_MAR_emulators/north_mar_xscaler.pkl",
-     "catchment_MAR_emulators/north_mar_yscaler.pkl")
+     "catchment_MAR_emulators/minturn_mar_yscaler.pkl")
 ]
 
 predictors = ['air_temp', 'ice_temp', 'albedo', 'shortwave_down']

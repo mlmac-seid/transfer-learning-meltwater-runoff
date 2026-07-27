@@ -37,23 +37,17 @@ List of in-situ data to be predicted:
     Minturn:
         -07/15/2019-09/29/2019
         -03/31/2020-09/30/2020
-
-    North:
-        -07/15/2019-10/20/2019
-        -06/16/2020-10/01/2020
 """
 
 # Load in-situ runoff data
 rb_in_situ_runoff = pd.read_csv('./catchment in-situ data/rio_behar_catchment_mar_tl.csv')
 ak4_in_situ_runoff = pd.read_csv('./catchment in-situ data/ak4_catchment_mar_tl.csv')
 minturn_in_situ_runoff = pd.read_csv('./catchment in-situ data/minturn_catchment_mar_tl.csv')
-north_in_situ_runoff = pd.read_csv('./catchment in-situ data/north_catchment_mar_tl.csv')
 
 # Make sure date columns are datetime
 rb_in_situ_runoff['date'] = pd.to_datetime(rb_in_situ_runoff['date'])
 ak4_in_situ_runoff['date'] = pd.to_datetime(ak4_in_situ_runoff['date'])
 minturn_in_situ_runoff['date'] = pd.to_datetime(minturn_in_situ_runoff['date'])
-north_in_situ_runoff['date'] = pd.to_datetime(north_in_situ_runoff['date'])
 
 # Make yearly dfs of in-situ data
 rb_in_situ_2015 = rb_in_situ_runoff[rb_in_situ_runoff['date'].dt.year == 2015]
@@ -73,11 +67,6 @@ minturn_in_situ_2019 = minturn_in_situ_runoff[minturn_in_situ_runoff['date'].dt.
 minturn_in_situ_2020 = minturn_in_situ_runoff[minturn_in_situ_runoff['date'].dt.year == 2020]
 minturn_in_situ_2021 = minturn_in_situ_runoff[minturn_in_situ_runoff['date'].dt.year == 2021]
 minturn_in_situ_2022 = minturn_in_situ_runoff[minturn_in_situ_runoff['date'].dt.year == 2022]
-
-north_in_situ_2019 = north_in_situ_runoff[north_in_situ_runoff['date'].dt.year == 2019]
-north_in_situ_2020 = north_in_situ_runoff[north_in_situ_runoff['date'].dt.year == 2020]
-north_in_situ_2021 = north_in_situ_runoff[north_in_situ_runoff['date'].dt.year == 2021]
-north_in_situ_2022 = north_in_situ_runoff[north_in_situ_runoff['date'].dt.year == 2022]
 
 # Select only summer values
 rb_in_situ_2015 = rb_in_situ_2015.loc[
@@ -128,19 +117,6 @@ minturn_in_situ_2022 = minturn_in_situ_2022.loc[
     (minturn_in_situ_2022["date"] >= "2022-04-01") & (minturn_in_situ_2022["date"] <= "2022-09-30")
 ].sort_values("date")
 
-north_in_situ_2019 = north_in_situ_2019.loc[
-    (north_in_situ_2019["date"] >= "2019-04-01") & (north_in_situ_2019["date"] <= "2019-09-30")
-].sort_values("date")
-north_in_situ_2020 = north_in_situ_2020.loc[
-    (north_in_situ_2020["date"] >= "2020-04-01") & (north_in_situ_2020["date"] <= "2020-09-30")
-].sort_values("date")
-north_in_situ_2021 = north_in_situ_2021.loc[
-    (north_in_situ_2021["date"] >= "2021-04-01") & (north_in_situ_2021["date"] <= "2021-09-30")
-].sort_values("date")
-north_in_situ_2022 = north_in_situ_2022.loc[
-    (north_in_situ_2022["date"] >= "2022-04-01") & (north_in_situ_2022["date"] <= "2022-09-30")
-].sort_values("date")
-
 # Load MAR data for each summer
 def load_and_prepare_mar_data(path):
     df = pd.read_csv(path)
@@ -172,17 +148,11 @@ minturn_2020_mar = load_and_prepare_mar_data("Minturn_catchment_variables/mintur
 minturn_2021_mar = load_and_prepare_mar_data("Minturn_catchment_variables/minturn_catchment_2021_vars.csv")
 minturn_2022_mar = load_and_prepare_mar_data("Minturn_catchment_variables/minturn_catchment_2022_vars.csv")
 
-north_2019_mar = load_and_prepare_mar_data('North_catchment_variables/north_catchment_2019_vars.csv')
-north_2020_mar = load_and_prepare_mar_data('North_catchment_variables/north_catchment_2020_vars.csv')
-north_2021_mar = load_and_prepare_mar_data('North_catchment_variables/north_catchment_2021_vars.csv')
-north_2022_mar = load_and_prepare_mar_data('North_catchment_variables/north_catchment_2022_vars.csv')
-
 # Normalize MAR dates
 for df in [
     rb_2015_mar, rb_2016_mar,
     ak4_2008_mar, ak4_2009_mar, ak4_2010_mar, ak4_2011_mar, ak4_2012_mar, ak4_2013_mar, ak4_2014_mar, ak4_2015_mar, ak4_2016_mar,
-    minturn_2019_mar, minturn_2020_mar, minturn_2021_mar, minturn_2022_mar,
-    north_2019_mar, north_2020_mar, north_2021_mar, north_2022_mar
+    minturn_2019_mar, minturn_2020_mar, minturn_2021_mar, minturn_2022_mar
 ]:
     df['date'] = df['time'].dt.normalize()
 
@@ -205,25 +175,18 @@ minturn_2020_mar = minturn_2020_mar[minturn_2020_mar['date'].isin(minturn_in_sit
 minturn_2021_mar = minturn_2021_mar[minturn_2021_mar['date'].isin(minturn_in_situ_2021['date'])]
 minturn_2022_mar = minturn_2022_mar[minturn_2022_mar['date'].isin(minturn_in_situ_2022['date'])]
 
-north_2019_mar = north_2019_mar[north_2019_mar['date'].isin(north_in_situ_2019['date'])]
-north_2020_mar = north_2020_mar[north_2020_mar['date'].isin(north_in_situ_2020['date'])]
-north_2021_mar = north_2021_mar[north_2021_mar['date'].isin(north_in_situ_2021['date'])]
-north_2022_mar = north_2022_mar[north_2022_mar['date'].isin(north_in_situ_2022['date'])]
-
 # Load transfer learning models
 models = {
     "2015-2016 Rio Behar": tf.keras.models.load_model('catchment_TL_models/mlp_catchment_tl_rio_behar_mar.keras'),
     "2008-2016 AK4": tf.keras.models.load_model('catchment_TL_models/mlp_catchment_tl_ak4_mar.keras'),
-    "2019-2022 Minturn": tf.keras.models.load_model('catchment_TL_models/mlp_catchment_tl_minturn_mar.keras'),
-    "2019-2022 North": tf.keras.models.load_model('catchment_TL_models/mlp_catchment_tl_north_mar.keras')
+    "2019-2022 Minturn": tf.keras.models.load_model('catchment_TL_models/mlp_catchment_tl_minturn_mar.keras')
 }
 
 # Load MAR emulators
 mar_emulators = {
     "Rio Behar": tf.keras.models.load_model('catchment_MAR_emulators/rb_mar_mlp.keras'),
     "AK4": tf.keras.models.load_model('catchment_MAR_emulators/AK4_mar_mlp.keras'),
-    "Minturn": tf.keras.models.load_model('catchment_MAR_emulators/minturn_mar_mlp.keras'),
-    "North": tf.keras.models.load_model('catchment_MAR_emulators/north_mar_mlp.keras')
+    "Minturn": tf.keras.models.load_model('catchment_MAR_emulators/minturn_mar_mlp.keras')
 }
 
 # Standardize feature names
@@ -240,7 +203,6 @@ for name in [
     'ak4_in_situ_2008', 'ak4_in_situ_2009', 'ak4_in_situ_2010', 'ak4_in_situ_2011',
     'ak4_in_situ_2012', 'ak4_in_situ_2013', 'ak4_in_situ_2014', 'ak4_in_situ_2015', 'ak4_in_situ_2016',
     'minturn_in_situ_2019', 'minturn_in_situ_2020', 'minturn_in_situ_2021', 'minturn_in_situ_2022',
-    'north_in_situ_2019', 'north_in_situ_2020', 'north_in_situ_2021', 'north_in_situ_2022',
     'rb_2015_mar', 'rb_2016_mar'
 ]:
     locals()[name] = standardize_feature_names(locals()[name])
@@ -259,18 +221,13 @@ mar_emulator_scalers = {
         joblib.load("catchment_MAR_emulators/minturn_mar_xscaler.pkl"),
         joblib.load("catchment_MAR_emulators/minturn_mar_yscaler.pkl")
     ),
-    "North": (
-        joblib.load("catchment_MAR_emulators/north_mar_xscaler.pkl"),
-        joblib.load("catchment_MAR_emulators/north_mar_yscaler.pkl")
-    ),
 }
 
 # Load TL training data
 tl_training_sets = {
     "2015-2016 Rio Behar": pd.read_csv('catchment in-situ data/rio_behar_catchment_mar_tl.csv'),
     "2008-2016 AK4": pd.read_csv('catchment in-situ data/ak4_catchment_mar_tl.csv'),
-    "2019-2022 Minturn": pd.read_csv('catchment in-situ data/minturn_catchment_mar_tl.csv'),
-    "2019-2022 North": pd.read_csv('catchment in-situ data/north_catchment_mar_tl.csv')
+    "2019-2022 Minturn": pd.read_csv('catchment in-situ data/minturn_catchment_mar_tl.csv')
 }
 
 TARGET = "runoff"
@@ -279,14 +236,12 @@ FEATURES_BY_TL_KEY = {
     "2015-2016 Rio Behar": ["air_temp", "ice_temp", "albedo", "shortwave_down"],
     "2008-2016 AK4": ["air_temp", "ice_temp", "albedo", "shortwave_down"],
     "2019-2022 Minturn": ["air_temp", "ice_temp", "albedo", "shortwave_down"],
-    "2019-2022 North": ["air_temp", "ice_temp", "albedo", "shortwave_down"],
 }
 
 FEATURES_BY_MAR_KEY = {
     "Rio Behar": ["air_temp", "ice_temp", "albedo", "shortwave_down"],
     "AK4": ["air_temp", "ice_temp", "albedo", "shortwave_down"],
     "Minturn": ["air_temp", "ice_temp", "albedo", "shortwave_down"],
-    "North": ["air_temp", "ice_temp", "albedo", "shortwave_down"],
 }
 
 def rebuild_tl_scaler(df, feature_cols):
@@ -329,11 +284,7 @@ EVAL_MODEL_MAP = {
     "2019 Minturn": {"mar_emulator": "Minturn", "tl": "2019-2022 Minturn"},
     "2020 Minturn": {"mar_emulator": "Minturn", "tl": "2019-2022 Minturn"},
     "2021 Minturn": {"mar_emulator": "Minturn", "tl": "2019-2022 Minturn"},
-    "2022 Minturn": {"mar_emulator": "Minturn", "tl": "2019-2022 Minturn"},
-    "2019 North": {"mar_emulator": "North", "tl": "2019-2022 North"},
-    "2020 North": {"mar_emulator": "North", "tl": "2019-2022 North"},
-    "2021 North": {"mar_emulator": "North", "tl": "2019-2022 North"},
-    "2022 North": {"mar_emulator": "North", "tl": "2019-2022 North"}
+    "2022 Minturn": {"mar_emulator": "Minturn", "tl": "2019-2022 Minturn"}
 }
 
 def mc_dropout_predictions(model, scaler_x, scaler_y, X, n_runs=100):
@@ -511,11 +462,6 @@ evaluate_catchment(minturn_in_situ_2020, minturn_2020_mar, "2020 Minturn")
 evaluate_catchment(minturn_in_situ_2021, minturn_2021_mar, "2021 Minturn")
 evaluate_catchment(minturn_in_situ_2022, minturn_2022_mar, "2022 Minturn")
 
-evaluate_catchment(north_in_situ_2019, north_2019_mar, "2019 North")
-evaluate_catchment(north_in_situ_2020, north_2020_mar, "2020 North")
-evaluate_catchment(north_in_situ_2021, north_2021_mar, "2021 North")
-evaluate_catchment(north_in_situ_2022, north_2022_mar, "2022 North")
-
 # Save cumulative evaluation results
 #output_dir = '/Users/mlm211/Documents/DeepMelt/catchment-scale'
 output_dir = '/Users/maya/Documents/Duke University/DeepMelt/catchment-scale'
@@ -621,7 +567,7 @@ error_rate_avg = tl_results.groupby(["TL Model", "Catchment"])["Error Rate"].mea
 
 error_rate_matrix = error_rate_avg.pivot(index="TL Model", columns="Catchment", values="Error Rate")
 
-order = ["Rio Behar", "AK4", "Minturn", "North"]
+order = ["Rio Behar", "AK4", "Minturn"]
 error_rate_matrix = error_rate_matrix.reindex(index=order[::-1], columns=order)
 
 plt.figure(figsize=(12, 8))
@@ -774,7 +720,7 @@ def plot_gap_filling(df, gap_idx, eval_label, ax):
     ax.set_xlabel("Date", fontsize=18)
     ax.set_ylabel("Meltwater Runoff (mmWE)", fontsize=18)
     if nmse_value is not None:
-        if eval_label == "2008 AK4" or eval_label == "2019 Minturn" or eval_label == "2019 North" or eval_label == "2022 Minturn" or eval_label == "2022 North":
+        if eval_label == "2008 AK4" or eval_label == "2019 Minturn" or eval_label == "2022 Minturn":
             ax.text(0.60, 0.95,
                     f"NMSE = {nmse_value:.2f}",
                     transform=ax.transAxes,
@@ -821,12 +767,6 @@ def run_gap_filling_all_years():
             ("2020 Minturn", minturn_in_situ_2020, minturn_2020_mar),
             ("2021 Minturn", minturn_in_situ_2021, minturn_2021_mar),
             ("2022 Minturn", minturn_in_situ_2022, minturn_2022_mar),
-        ],
-        "North": [
-            ("2019 North", north_in_situ_2019, north_2019_mar),
-            ("2020 North", north_in_situ_2020, north_2020_mar),
-            ("2021 North", north_in_situ_2021, north_2021_mar),
-            ("2022 North", north_in_situ_2022, north_2022_mar),
         ]
     }
 
@@ -917,12 +857,6 @@ def run_gap_ensemble(n_runs=1000):
             ("2020 Minturn", minturn_in_situ_2020, minturn_2020_mar),
             ("2021 Minturn", minturn_in_situ_2021, minturn_2021_mar),
             ("2022 Minturn", minturn_in_situ_2022, minturn_2022_mar),
-        ],
-        "North": [
-            ("2019 North", north_in_situ_2019, north_2019_mar),
-            ("2020 North", north_in_situ_2020, north_2020_mar),
-            ("2021 North", north_in_situ_2021, north_2021_mar),
-            ("2022 North", north_in_situ_2022, north_2022_mar),
         ]
     }
 
@@ -988,19 +922,13 @@ def plot_best_gap_filling_per_catchment(best_nmse_by_catchment):
             ("2020 Minturn", minturn_in_situ_2020, minturn_2020_mar),
             ("2021 Minturn", minturn_in_situ_2021, minturn_2021_mar),
             ("2022 Minturn", minturn_in_situ_2022, minturn_2022_mar),
-        ],
-        "North": [
-            ("2019 North", north_in_situ_2019, north_2019_mar),
-            ("2020 North", north_in_situ_2020, north_2020_mar),
-            ("2021 North", north_in_situ_2021, north_2021_mar),
-            ("2022 North", north_in_situ_2022, north_2022_mar),
         ]
     }
 
     fig, axes = plt.subplots(2, 2, figsize=(26, 18))
     axes = axes.flatten()
 
-    catchment_order = ["Rio Behar", "AK4", "Minturn", "North"]
+    catchment_order = ["Rio Behar", "AK4", "Minturn"]
 
     for i, catchment in enumerate(catchment_order):
         best_label = best_nmse_by_catchment.loc[

@@ -23,8 +23,6 @@ rb_log = pd.read_csv(
     './catchment_training_experiment_logs/catchment_training_experiment_log_rio_behar.csv')
 minturn_log = pd.read_csv(
     './catchment_training_experiment_logs/catchment_training_experiment_log_minturn.csv')
-north_log = pd.read_csv(
-    './catchment_training_experiment_logs/catchment_training_experiment_log_north.csv')
 ak4_log = pd.read_csv(
     './catchment_training_experiment_logs/catchment_training_experiment_log_ak4.csv')
 
@@ -152,20 +150,17 @@ def mean_uncertainty(log_file):
 # Run function for ensemble mean MSE and uncertainty for each catchment
 rb_mse_uncertainty_df, rb_ensemble_stats = mean_uncertainty(rb_log)
 minturn_mse_uncertainty_df, minturn_ensemble_stats = mean_uncertainty(minturn_log)
-north_mse_uncertainty_df, north_ensemble_stats = mean_uncertainty(north_log)
 ak4_mse_uncertainty_df, ak4_ensemble_stats = mean_uncertainty(ak4_log)
 
 # Add catchment name to each ensemble_stats dataframe
 rb_ensemble_stats['catchment'] = 'Rio Behar'
 minturn_ensemble_stats['catchment'] = 'Minturn'
-north_ensemble_stats['catchment'] = 'North'
 ak4_ensemble_stats['catchment'] = 'AK4'
 
 # Combine all catchments into one dataframe
 all_bic = pd.concat([
     rb_ensemble_stats,
     minturn_ensemble_stats,
-    north_ensemble_stats,
     ak4_ensemble_stats
 ], ignore_index=True)
 
@@ -198,7 +193,6 @@ predictor_labels = ['1', '2', '5', '4', '3', '6']
 catchment_colors = {
     'AK4': '#be128a',
     'Minturn': '#1f78b4',
-    'North': '#984ea3',
     'Rio Behar': '#ff7f00'
 }
 
@@ -206,7 +200,6 @@ catchment_colors = {
 offsets = {
     'AK4': -0.18,
     'Minturn': -0.06,
-    'North': 0.06,
     'Rio Behar': 0.18
 }
 
@@ -217,7 +210,7 @@ plt.figure(figsize=(10, 6))
 x_positions = np.arange(len(predictor_order))
 
 # Plot each catchment separately
-catchments = ['AK4', 'Minturn', 'North', 'Rio Behar']
+catchments = ['AK4', 'Minturn', 'Rio Behar']
 
 for catchment in catchments:
     subset = all_bic[all_bic['catchment'] == catchment]
