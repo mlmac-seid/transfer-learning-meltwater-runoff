@@ -33,8 +33,9 @@ transfer-learning-meltwater-runoff/
 
 ## Data availability
 
-TODO: write about how the data required to reproduce the findings of this study for every step beyond 0_pre-process are included in this repository, but the MAR version 3.14 netcdf files can be downloaded from the MAR FTP server (provide link for the server)
+The data required to reproduce the findings of this study for every step beyond 0_pre-process are included in this repository. The MAR version 3.14 NetCDF files needed for the pre-processing step can be downloaded from the MAR FTP server (ftp://ftp.climato.be/fettweis/MARv3.14/Greenland/ERA5-10km-daily/).
 
 ## Acknowledgements
 
+We thank Matthew Cooper for providing the Rio Behar catchment delineation and Xavier Fettweis for making the MARv3.14 outputs available.
 TODO: This research was supported by ______
