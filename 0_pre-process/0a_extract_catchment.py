@@ -4,7 +4,7 @@ Created on Fri Feb  6 09:56:25 2026
 
 @author: mayam
 
-Extract Rio Behar, AK4, Minturn, and North catchments from MAR version 3.14
+Extract Rio Behar, AK4, and Minturn catchments from MAR version 3.14
 to prepare for further analysis.
 """
 
@@ -105,10 +105,6 @@ ak4_catchment = gpd.read_file(
 # Open Minturn catchment delineation
 minturn_catchment = gpd.read_file(
     '/Users/mlm211/Documents/DeepMelt/catchment_delineations/minturn_basin.shp')
-
-# Open North catchment delineation
-north_catchment = gpd.read_file(
-    '/Users/mlm211/Documents/DeepMelt/catchment_delineations/north_basin.shp')
 
 # Convert MAR coordinates from km to meters for each year
 mar_2000 = mar_2000.assign_coords(
@@ -243,15 +239,13 @@ mar_2024 = mar_2024.rio.write_crs("EPSG:3413")
 rb_catchment = rio_behar_catchment.to_crs(mar_2000.rio.crs)
 ak4_catchment = ak4_catchment.to_crs(mar_2000.rio.crs)
 minturn_catchment = minturn_catchment.to_crs(mar_2000.rio.crs)
-north_catchment = north_catchment.to_crs(mar_2000.rio.crs)
 
 
 # Print catchment areas
 catchments = {
     "Rio Behar": rb_catchment,
     "AK4": ak4_catchment,
-    "Minturn": minturn_catchment,
-    "North": north_catchment}
+    "Minturn": minturn_catchment}
 
 for name, gdf in catchments.items():
     area_m2 = gdf.geometry.area.sum()
@@ -312,11 +306,10 @@ def make_fraction(ds, catchment_gdf, msk_var="MSK"):
 
     return fraction
 
-# Get MAR grid cell fractional coverage for Rio Behar, AK4, Minturn, and North
+# Get MAR grid cell fractional coverage for Rio Behar, AK4, and Minturn
 rb_fraction = make_fraction(mar_2000, rb_catchment)
 ak4_fraction = make_fraction(mar_2008, ak4_catchment)
 minturn_fraction = make_fraction(mar_2019, minturn_catchment)
-north_fraction = make_fraction(mar_2019, north_catchment)
 
 # 4 panel figure of catchments mapped onto MAR grid
 def plot_catchment_remap(
@@ -436,9 +429,6 @@ plot_catchment_remap(mar_2000, ak4_catchment, ak4_fraction,
 
 plot_catchment_remap(mar_2000, minturn_catchment, minturn_fraction,
                      title="Minturn", pad_cells=0.5, ax=axes[2])
-
-plot_catchment_remap(mar_2000, north_catchment, north_fraction,
-                     title="North", pad_cells=0.5, ax=axes[3])
 
 cbar = fig.colorbar(sm, ax=axes, orientation="vertical", shrink=0.8)
 cbar.set_label("Grid cell fractional overlap", fontsize=20)   # bigger title
@@ -611,17 +601,6 @@ plot_catchment_msk(
     cmap=cmap,
 )
 
-plot_catchment_msk(
-    mar_2000,
-    north_catchment,
-    north_fraction,
-    title="North",
-    pad_cells=0.5,
-    ax=axes[3],
-    norm=norm,
-    cmap=cmap,
-)
-
 cbar = fig.colorbar(sm, ax=axes, orientation="vertical", shrink=0.8)
 cbar.set_label("MAR Ice Sheet Mask (%)", fontsize=20)
 cbar.ax.tick_params(labelsize=20)
@@ -660,8 +639,7 @@ def glaciated_percent(catchment_gdf, fraction_da, ds):
 for name, gdf, frac in [
     ("Rio Behar", rb_catchment, rb_fraction),
     ("AK4", ak4_catchment, ak4_fraction),
-    ("Minturn", minturn_catchment, minturn_fraction),
-    ("North", north_catchment, north_fraction),
+    ("Minturn", minturn_catchment, minturn_fraction)
 ]:
 
     # Compute glaciated percentage
@@ -900,58 +878,6 @@ minturn_catchment_2023 = clip_mar(
     mar_2023, minturn_catchment.geometry, crs=minturn_catchment.crs)
 minturn_catchment_2024 = clip_mar(
     mar_2024, minturn_catchment.geometry, crs=minturn_catchment.crs)
-
-# Clip MAR to the extent of the North catchment
-north_catchment_2000 = clip_mar(
-    mar_2000, north_catchment.geometry, crs=north_catchment.crs)
-north_catchment_2001 = clip_mar(
-    mar_2001, north_catchment.geometry, crs=north_catchment.crs)
-north_catchment_2002 = clip_mar(
-    mar_2002, north_catchment.geometry, crs=north_catchment.crs)
-north_catchment_2003 = clip_mar(
-    mar_2003, north_catchment.geometry, crs=north_catchment.crs)
-north_catchment_2004 = clip_mar(
-    mar_2004, north_catchment.geometry, crs=north_catchment.crs)
-north_catchment_2005 = clip_mar(
-    mar_2005, north_catchment.geometry, crs=north_catchment.crs)
-north_catchment_2006 = clip_mar(
-    mar_2006, north_catchment.geometry, crs=north_catchment.crs)
-north_catchment_2007 = clip_mar(
-    mar_2007, north_catchment.geometry, crs=north_catchment.crs)
-north_catchment_2008 = clip_mar(
-    mar_2008, north_catchment.geometry, crs=north_catchment.crs)
-north_catchment_2009 = clip_mar(
-    mar_2009, north_catchment.geometry, crs=north_catchment.crs)
-north_catchment_2010 = clip_mar(
-    mar_2010, north_catchment.geometry, crs=north_catchment.crs)
-north_catchment_2011 = clip_mar(
-    mar_2011, north_catchment.geometry, crs=north_catchment.crs)
-north_catchment_2012 = clip_mar(
-    mar_2012, north_catchment.geometry, crs=north_catchment.crs)
-north_catchment_2013 = clip_mar(
-    mar_2013, north_catchment.geometry, crs=north_catchment.crs)
-north_catchment_2014 = clip_mar(
-    mar_2014, north_catchment.geometry, crs=north_catchment.crs)
-north_catchment_2015 = clip_mar(
-    mar_2015, north_catchment.geometry, crs=north_catchment.crs)
-north_catchment_2016 = clip_mar(
-    mar_2016, north_catchment.geometry, crs=north_catchment.crs)
-north_catchment_2017 = clip_mar(
-    mar_2017, north_catchment.geometry, crs=north_catchment.crs)
-north_catchment_2018 = clip_mar(
-    mar_2018, north_catchment.geometry, crs=north_catchment.crs)
-north_catchment_2019 = clip_mar(
-    mar_2019, north_catchment.geometry, crs=north_catchment.crs)
-north_catchment_2020 = clip_mar(
-    mar_2020, north_catchment.geometry, crs=north_catchment.crs)
-north_catchment_2021 = clip_mar(
-    mar_2021, north_catchment.geometry, crs=north_catchment.crs)
-north_catchment_2022 = clip_mar(
-    mar_2022, north_catchment.geometry, crs=north_catchment.crs)
-north_catchment_2023 = clip_mar(
-    mar_2023, north_catchment.geometry, crs=north_catchment.crs)
-north_catchment_2024 = clip_mar(
-    mar_2024, north_catchment.geometry, crs=north_catchment.crs)
 
 # Define output directory for Rio Behar
 output_dir_rb = "/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/Rio_Behar_catchment_2000_2021"
@@ -1344,151 +1270,3 @@ minturn_catchment_2024.to_netcdf(minturn_file_name_2024)
 
 # Save Minturn fraction file to NetCDF
 minturn_fraction.to_netcdf(minturn_frac_file_name)
-
-# Define output directory for North
-output_dir_north = "/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment_2019_2020"
-
-# Create North directory if it doesn't exist
-os.makedirs(output_dir_north, exist_ok=True)
-
-# File name (with path) to save North catchments
-north_file_name_2000 = os.path.join(
-    output_dir_north, "north_catchment_2000.nc")
-north_file_name_2001 = os.path.join(
-    output_dir_north, "north_catchment_2001.nc")
-north_file_name_2002 = os.path.join(
-    output_dir_north, "north_catchment_2002.nc")
-north_file_name_2003 = os.path.join(
-    output_dir_north, "north_catchment_2003.nc")
-north_file_name_2004 = os.path.join(
-    output_dir_north, "north_catchment_2004.nc")
-north_file_name_2005 = os.path.join(
-    output_dir_north, "north_catchment_2005.nc")
-north_file_name_2006 = os.path.join(
-    output_dir_north, "north_catchment_2006.nc")
-north_file_name_2007 = os.path.join(
-    output_dir_north, "north_catchment_2007.nc")
-north_file_name_2008 = os.path.join(
-    output_dir_north, "north_catchment_2008.nc")
-north_file_name_2009 = os.path.join(
-    output_dir_north, "north_catchment_2009.nc")
-north_file_name_2010 = os.path.join(
-    output_dir_north, "north_catchment_2010.nc")
-north_file_name_2011 = os.path.join(
-    output_dir_north, "north_catchment_2011.nc")
-north_file_name_2012 = os.path.join(
-    output_dir_north, "north_catchment_2012.nc")
-north_file_name_2013 = os.path.join(
-    output_dir_north, "north_catchment_2013.nc")
-north_file_name_2014 = os.path.join(
-    output_dir_north, "north_catchment_2014.nc")
-north_file_name_2015 = os.path.join(
-    output_dir_north, "north_catchment_2015.nc")
-north_file_name_2016 = os.path.join(
-    output_dir_north, "north_catchment_2016.nc")
-north_file_name_2017 = os.path.join(
-    output_dir_north, "north_catchment_2017.nc")
-north_file_name_2018 = os.path.join(
-    output_dir_north, "north_catchment_2018.nc")
-north_file_name_2019 = os.path.join(
-    output_dir_north, "north_catchment_2019.nc")
-north_file_name_2020 = os.path.join(
-    output_dir_north, "north_catchment_2020.nc")
-north_file_name_2021 = os.path.join(
-    output_dir_north, "north_catchment_2021.nc")
-north_file_name_2022 = os.path.join(
-    output_dir_north, "north_catchment_2022.nc")
-north_file_name_2023 = os.path.join(
-    output_dir_north, "north_catchment_2023.nc")
-north_file_name_2024 = os.path.join(
-    output_dir_north, "north_catchment_2024.nc")
-
-# File name (with path) to save North fraction
-north_frac_file_name = os.path.join(
-    output_dir_north, "north_fraction.nc")
-
-# Delete old North catchment files if they exist
-if os.path.exists(north_file_name_2000):
-    os.remove(north_file_name_2000)
-if os.path.exists(north_file_name_2001):
-    os.remove(north_file_name_2001)
-if os.path.exists(north_file_name_2002):
-    os.remove(north_file_name_2002)
-if os.path.exists(north_file_name_2003):
-    os.remove(north_file_name_2003)
-if os.path.exists(north_file_name_2004):
-    os.remove(north_file_name_2004)
-if os.path.exists(north_file_name_2005):
-    os.remove(north_file_name_2005)
-if os.path.exists(north_file_name_2006):
-    os.remove(north_file_name_2006)
-if os.path.exists(north_file_name_2007):
-    os.remove(north_file_name_2007)
-if os.path.exists(north_file_name_2008):
-    os.remove(north_file_name_2008)
-if os.path.exists(north_file_name_2009):
-    os.remove(north_file_name_2009)
-if os.path.exists(north_file_name_2010):
-    os.remove(north_file_name_2010)
-if os.path.exists(north_file_name_2011):
-    os.remove(north_file_name_2011)
-if os.path.exists(north_file_name_2012):
-    os.remove(north_file_name_2012)
-if os.path.exists(north_file_name_2013):
-    os.remove(north_file_name_2013)
-if os.path.exists(north_file_name_2014):
-    os.remove(north_file_name_2014)
-if os.path.exists(north_file_name_2015):
-    os.remove(north_file_name_2015)
-if os.path.exists(north_file_name_2016):
-    os.remove(north_file_name_2016)
-if os.path.exists(north_file_name_2017):
-    os.remove(north_file_name_2017)
-if os.path.exists(north_file_name_2018):
-    os.remove(north_file_name_2018)
-if os.path.exists(north_file_name_2019):
-    os.remove(north_file_name_2019)
-if os.path.exists(north_file_name_2020):
-    os.remove(north_file_name_2020)
-if os.path.exists(north_file_name_2021):
-    os.remove(north_file_name_2021)
-if os.path.exists(north_file_name_2022):
-    os.remove(north_file_name_2022)
-if os.path.exists(north_file_name_2023):
-    os.remove(north_file_name_2023)
-if os.path.exists(north_file_name_2024):
-    os.remove(north_file_name_2024)
-
-# Delete old North fraction file if it exists
-if os.path.exists(north_frac_file_name):
-    os.remove(north_frac_file_name)
-
-# Save North catchment files to NetCDF
-north_catchment_2000.to_netcdf(north_file_name_2000)
-north_catchment_2001.to_netcdf(north_file_name_2001)
-north_catchment_2002.to_netcdf(north_file_name_2002)
-north_catchment_2003.to_netcdf(north_file_name_2003)
-north_catchment_2004.to_netcdf(north_file_name_2004)
-north_catchment_2005.to_netcdf(north_file_name_2005)
-north_catchment_2006.to_netcdf(north_file_name_2006)
-north_catchment_2007.to_netcdf(north_file_name_2007)
-north_catchment_2008.to_netcdf(north_file_name_2008)
-north_catchment_2009.to_netcdf(north_file_name_2009)
-north_catchment_2010.to_netcdf(north_file_name_2010)
-north_catchment_2011.to_netcdf(north_file_name_2011)
-north_catchment_2012.to_netcdf(north_file_name_2012)
-north_catchment_2013.to_netcdf(north_file_name_2013)
-north_catchment_2014.to_netcdf(north_file_name_2014)
-north_catchment_2015.to_netcdf(north_file_name_2015)
-north_catchment_2016.to_netcdf(north_file_name_2016)
-north_catchment_2017.to_netcdf(north_file_name_2017)
-north_catchment_2018.to_netcdf(north_file_name_2018)
-north_catchment_2019.to_netcdf(north_file_name_2019)
-north_catchment_2020.to_netcdf(north_file_name_2020)
-north_catchment_2021.to_netcdf(north_file_name_2021)
-north_catchment_2022.to_netcdf(north_file_name_2022)
-north_catchment_2023.to_netcdf(north_file_name_2023)
-north_catchment_2024.to_netcdf(north_file_name_2024)
-
-# Save North fraction file to NetCDF
-north_fraction.to_netcdf(north_frac_file_name)

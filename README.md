@@ -21,7 +21,6 @@ transfer-learning-meltwater-runoff/
 ├── 4_evaluation_and_figures
 ├── AK4_catchment_variables
 ├── Minturn_catchment_variables
-├── North_catchment_variables
 ├── Rio_Behar_catchment_variables
 ├── catchment in-situ data
 ├── catchment_TL_models

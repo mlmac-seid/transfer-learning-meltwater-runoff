@@ -5,7 +5,7 @@ Created on Mon Feb  9 13:05:25 2026
 
 @author: mlm211
 
-Extract pertinent variables from Rio Behar, AK4, Minturn, and North catchments 
+Extract pertinent variables from Rio Behar, AK4, and Minturn catchments 
 from MAR version 3.14 to prepare for modeling.
 """
 
@@ -176,58 +176,6 @@ minturn_catchment_2023 = xr.open_dataset(
 minturn_catchment_2024 = xr.open_dataset(
     '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/minturn_catchment/minturn_catchment_2024.nc')
 
-# Load North catchments
-north_catchment_2000 = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_catchment_2000.nc')
-north_catchment_2001 = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_catchment_2001.nc')
-north_catchment_2002 = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_catchment_2002.nc')
-north_catchment_2003 = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_catchment_2003.nc')
-north_catchment_2004 = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_catchment_2004.nc')
-north_catchment_2005 = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_catchment_2005.nc')
-north_catchment_2006 = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_catchment_2006.nc')
-north_catchment_2007 = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_catchment_2007.nc')
-north_catchment_2008 = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_catchment_2008.nc')
-north_catchment_2009 = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_catchment_2009.nc')
-north_catchment_2010 = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_catchment_2010.nc')
-north_catchment_2011 = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_catchment_2011.nc')
-north_catchment_2012 = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_catchment_2012.nc')
-north_catchment_2013 = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_catchment_2013.nc')
-north_catchment_2014 = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_catchment_2014.nc')
-north_catchment_2015 = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_catchment_2015.nc')
-north_catchment_2016 = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_catchment_2016.nc')
-north_catchment_2017 = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_catchment_2017.nc')
-north_catchment_2018 = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_catchment_2018.nc')
-north_catchment_2019 = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_catchment_2019.nc')
-north_catchment_2020 = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_catchment_2020.nc')
-north_catchment_2021 = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_catchment_2021.nc')
-north_catchment_2022 = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_catchment_2022.nc')
-north_catchment_2023 = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_catchment_2023.nc')
-north_catchment_2024 = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_catchment_2024.nc')
-
 # Load catchment fractions
 rb_fraction = xr.open_dataset(
     '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/Rio_Behar_catchment/rb_fraction.nc')
@@ -235,8 +183,6 @@ ak4_fraction = xr.open_dataset(
     '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/AK4_catchment/ak4_fraction.nc')
 minturn_fraction = xr.open_dataset(
     '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/minturn_catchment/minturn_fraction.nc')
-north_fraction = xr.open_dataset(
-    '/Users/mlm211/Documents/DeepMelt/catchment-scale/MAR_catchments/north_catchment/north_fraction.nc')
 
 # Rio Behar datetime array
 rb_2000_time = rb_catchment_2000['TIME'].values
@@ -516,107 +462,6 @@ minturn_2024_time = minturn_catchment_2024['TIME'].values
 minturn_2024_time = pd.to_datetime(
     minturn_catchment_2024['TIME'].values).to_pydatetime()
 
-# North datetime array
-north_2000_time = north_catchment_2000['TIME'].values
-north_2000_time = pd.to_datetime(
-    north_catchment_2000['TIME'].values).to_pydatetime()
-
-north_2001_time = north_catchment_2001['TIME'].values
-north_2001_time = pd.to_datetime(
-    north_catchment_2001['TIME'].values).to_pydatetime()
-
-north_2002_time = north_catchment_2002['TIME'].values
-north_2002_time = pd.to_datetime(
-    north_catchment_2002['TIME'].values).to_pydatetime()
-
-north_2003_time = north_catchment_2003['TIME'].values
-north_2003_time = pd.to_datetime(
-    north_catchment_2003['TIME'].values).to_pydatetime()
-
-north_2004_time = north_catchment_2004['TIME'].values
-north_2004_time = pd.to_datetime(
-    north_catchment_2004['TIME'].values).to_pydatetime()
-
-north_2005_time = north_catchment_2005['TIME'].values
-north_2005_time = pd.to_datetime(
-    north_catchment_2005['TIME'].values).to_pydatetime()
-
-north_2006_time = north_catchment_2006['TIME'].values
-north_2006_time = pd.to_datetime(
-    north_catchment_2006['TIME'].values).to_pydatetime()
-
-north_2007_time = north_catchment_2007['TIME'].values
-north_2007_time = pd.to_datetime(
-    north_catchment_2007['TIME'].values).to_pydatetime()
-
-north_2008_time = north_catchment_2008['TIME'].values
-north_2008_time = pd.to_datetime(
-    north_catchment_2008['TIME'].values).to_pydatetime()
-
-north_2009_time = north_catchment_2009['TIME'].values
-north_2009_time = pd.to_datetime(
-    north_catchment_2009['TIME'].values).to_pydatetime()
-
-north_2010_time = north_catchment_2010['TIME'].values
-north_2010_time = pd.to_datetime(
-    north_catchment_2010['TIME'].values).to_pydatetime()
-
-north_2011_time = north_catchment_2011['TIME'].values
-north_2011_time = pd.to_datetime(
-    north_catchment_2011['TIME'].values).to_pydatetime()
-
-north_2012_time = north_catchment_2012['TIME'].values
-north_2012_time = pd.to_datetime(
-    north_catchment_2012['TIME'].values).to_pydatetime()
-
-north_2013_time = north_catchment_2013['TIME'].values
-north_2013_time = pd.to_datetime(
-    north_catchment_2013['TIME'].values).to_pydatetime()
-
-north_2014_time = north_catchment_2014['TIME'].values
-north_2014_time = pd.to_datetime(
-    north_catchment_2014['TIME'].values).to_pydatetime()
-
-north_2015_time = north_catchment_2015['TIME'].values
-north_2015_time = pd.to_datetime(
-    north_catchment_2015['TIME'].values).to_pydatetime()
-
-north_2016_time = north_catchment_2016['TIME'].values
-north_2016_time = pd.to_datetime(
-    north_catchment_2016['TIME'].values).to_pydatetime()
-
-north_2017_time = north_catchment_2017['TIME'].values
-north_2017_time = pd.to_datetime(
-    north_catchment_2017['TIME'].values).to_pydatetime()
-
-north_2018_time = north_catchment_2018['TIME'].values
-north_2018_time = pd.to_datetime(
-    north_catchment_2018['TIME'].values).to_pydatetime()
-
-north_2019_time = north_catchment_2019['TIME'].values
-north_2019_time = pd.to_datetime(
-    north_catchment_2019['TIME'].values).to_pydatetime()
-
-north_2020_time = north_catchment_2020['TIME'].values
-north_2020_time = pd.to_datetime(
-    north_catchment_2020['TIME'].values).to_pydatetime()
-
-north_2021_time = north_catchment_2021['TIME'].values
-north_2021_time = pd.to_datetime(
-    north_catchment_2021['TIME'].values).to_pydatetime()
-
-north_2022_time = north_catchment_2022['TIME'].values
-north_2022_time = pd.to_datetime(
-    north_catchment_2022['TIME'].values).to_pydatetime()
-
-north_2023_time = north_catchment_2023['TIME'].values
-north_2023_time = pd.to_datetime(
-    north_catchment_2023['TIME'].values).to_pydatetime()
-
-north_2024_time = north_catchment_2024['TIME'].values
-north_2024_time = pd.to_datetime(
-    north_catchment_2024['TIME'].values).to_pydatetime()
-
 # Rio Behar catchment mean air temp
 rb_2000_air_temp = rb_catchment_2000['TTZ'].mean(
     dim=("y", "x"), skipna=True).values
@@ -771,58 +616,6 @@ minturn_2022_air_temp = minturn_catchment_2022['TTZ'].mean(
 minturn_2023_air_temp = minturn_catchment_2023['TTZ'].mean(
     dim=("y", "x"), skipna=True).values
 minturn_2024_air_temp = minturn_catchment_2024['TTZ'].mean(
-    dim=("y", "x"), skipna=True).values
-
-# North catchment mean air temp
-north_2000_air_temp = north_catchment_2000['TTZ'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2001_air_temp = north_catchment_2001['TTZ'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2002_air_temp = north_catchment_2002['TTZ'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2003_air_temp = north_catchment_2003['TTZ'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2004_air_temp = north_catchment_2004['TTZ'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2005_air_temp = north_catchment_2005['TTZ'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2006_air_temp = north_catchment_2006['TTZ'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2007_air_temp = north_catchment_2007['TTZ'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2008_air_temp = north_catchment_2008['TTZ'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2009_air_temp = north_catchment_2009['TTZ'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2010_air_temp = north_catchment_2010['TTZ'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2011_air_temp = north_catchment_2011['TTZ'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2012_air_temp = north_catchment_2012['TTZ'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2013_air_temp = north_catchment_2013['TTZ'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2014_air_temp = north_catchment_2014['TTZ'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2015_air_temp = north_catchment_2015['TTZ'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2016_air_temp = north_catchment_2016['TTZ'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2017_air_temp = north_catchment_2017['TTZ'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2018_air_temp = north_catchment_2018['TTZ'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2019_air_temp = north_catchment_2019['TTZ'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2020_air_temp = north_catchment_2020['TTZ'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2021_air_temp = north_catchment_2021['TTZ'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2022_air_temp = north_catchment_2022['TTZ'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2023_air_temp = north_catchment_2023['TTZ'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2024_air_temp = north_catchment_2024['TTZ'].mean(
     dim=("y", "x"), skipna=True).values
 
 # Rio Behar catchment mean ice surface temp
@@ -981,58 +774,6 @@ minturn_2023_ice_temp = minturn_catchment_2023['ST2'].mean(
 minturn_2024_ice_temp = minturn_catchment_2024['ST2'].mean(
     dim=("y", "x"), skipna=True).values
 
-# North catchment mean ice surface temp
-north_2000_ice_temp = north_catchment_2000['ST2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2001_ice_temp = north_catchment_2001['ST2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2002_ice_temp = north_catchment_2002['ST2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2003_ice_temp = north_catchment_2003['ST2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2004_ice_temp = north_catchment_2004['ST2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2005_ice_temp = north_catchment_2005['ST2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2006_ice_temp = north_catchment_2006['ST2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2007_ice_temp = north_catchment_2007['ST2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2008_ice_temp = north_catchment_2008['ST2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2009_ice_temp = north_catchment_2009['ST2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2010_ice_temp = north_catchment_2010['ST2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2011_ice_temp = north_catchment_2011['ST2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2012_ice_temp = north_catchment_2012['ST2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2013_ice_temp = north_catchment_2013['ST2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2014_ice_temp = north_catchment_2014['ST2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2015_ice_temp = north_catchment_2015['ST2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2016_ice_temp = north_catchment_2016['ST2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2017_ice_temp = north_catchment_2017['ST2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2018_ice_temp = north_catchment_2018['ST2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2019_ice_temp = north_catchment_2019['ST2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2020_ice_temp = north_catchment_2020['ST2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2021_ice_temp = north_catchment_2021['ST2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2022_ice_temp = north_catchment_2022['ST2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2023_ice_temp = north_catchment_2023['ST2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2024_ice_temp = north_catchment_2024['ST2'].mean(
-    dim=("y", "x"), skipna=True).values
-
 # Rio Behar catchment mean albedo
 rb_2000_albedo = rb_catchment_2000['AL2'].mean(
     dim=("y", "x"), skipna=True).values
@@ -1189,58 +930,6 @@ minturn_2023_albedo = minturn_catchment_2023['AL2'].mean(
 minturn_2024_albedo = minturn_catchment_2024['AL2'].mean(
     dim=("y", "x"), skipna=True).values
 
-# North catchment mean albedo
-north_2000_albedo = north_catchment_2000['AL2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2001_albedo = north_catchment_2001['AL2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2002_albedo = north_catchment_2002['AL2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2003_albedo = north_catchment_2003['AL2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2004_albedo = north_catchment_2004['AL2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2005_albedo = north_catchment_2005['AL2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2006_albedo = north_catchment_2006['AL2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2007_albedo = north_catchment_2007['AL2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2008_albedo = north_catchment_2008['AL2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2009_albedo = north_catchment_2009['AL2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2010_albedo = north_catchment_2010['AL2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2011_albedo = north_catchment_2011['AL2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2012_albedo = north_catchment_2012['AL2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2013_albedo = north_catchment_2013['AL2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2014_albedo = north_catchment_2014['AL2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2015_albedo = north_catchment_2015['AL2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2016_albedo = north_catchment_2016['AL2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2017_albedo = north_catchment_2017['AL2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2018_albedo = north_catchment_2018['AL2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2019_albedo = north_catchment_2019['AL2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2020_albedo = north_catchment_2020['AL2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2021_albedo = north_catchment_2021['AL2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2022_albedo = north_catchment_2022['AL2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2023_albedo = north_catchment_2023['AL2'].mean(
-    dim=("y", "x"), skipna=True).values
-north_2024_albedo = north_catchment_2024['AL2'].mean(
-    dim=("y", "x"), skipna=True).values
-
 # Rio Behar catchment mean shortwave downward
 rb_2000_swd = rb_catchment_2000['SWD'].mean(dim=("y", "x"), skipna=True).values
 rb_2001_swd = rb_catchment_2001['SWD'].mean(dim=("y", "x"), skipna=True).values
@@ -1323,33 +1012,6 @@ minturn_2022_swd = minturn_catchment_2022['SWD'].mean(dim=("y", "x"), skipna=Tru
 minturn_2023_swd = minturn_catchment_2023['SWD'].mean(dim=("y", "x"), skipna=True).values
 minturn_2024_swd = minturn_catchment_2024['SWD'].mean(dim=("y", "x"), skipna=True).values
 
-# North catchment mean shortwave downward
-north_2000_swd = north_catchment_2000['SWD'].mean(dim=("y", "x"), skipna=True).values
-north_2001_swd = north_catchment_2001['SWD'].mean(dim=("y", "x"), skipna=True).values
-north_2002_swd = north_catchment_2002['SWD'].mean(dim=("y", "x"), skipna=True).values
-north_2003_swd = north_catchment_2003['SWD'].mean(dim=("y", "x"), skipna=True).values
-north_2004_swd = north_catchment_2004['SWD'].mean(dim=("y", "x"), skipna=True).values
-north_2005_swd = north_catchment_2005['SWD'].mean(dim=("y", "x"), skipna=True).values
-north_2006_swd = north_catchment_2006['SWD'].mean(dim=("y", "x"), skipna=True).values
-north_2007_swd = north_catchment_2007['SWD'].mean(dim=("y", "x"), skipna=True).values
-north_2008_swd = north_catchment_2008['SWD'].mean(dim=("y", "x"), skipna=True).values
-north_2009_swd = north_catchment_2009['SWD'].mean(dim=("y", "x"), skipna=True).values
-north_2010_swd = north_catchment_2010['SWD'].mean(dim=("y", "x"), skipna=True).values
-north_2011_swd = north_catchment_2011['SWD'].mean(dim=("y", "x"), skipna=True).values
-north_2012_swd = north_catchment_2012['SWD'].mean(dim=("y", "x"), skipna=True).values
-north_2013_swd = north_catchment_2013['SWD'].mean(dim=("y", "x"), skipna=True).values
-north_2014_swd = north_catchment_2014['SWD'].mean(dim=("y", "x"), skipna=True).values
-north_2015_swd = north_catchment_2015['SWD'].mean(dim=("y", "x"), skipna=True).values
-north_2016_swd = north_catchment_2016['SWD'].mean(dim=("y", "x"), skipna=True).values
-north_2017_swd = north_catchment_2017['SWD'].mean(dim=("y", "x"), skipna=True).values
-north_2018_swd = north_catchment_2018['SWD'].mean(dim=("y", "x"), skipna=True).values
-north_2019_swd = north_catchment_2019['SWD'].mean(dim=("y", "x"), skipna=True).values
-north_2020_swd = north_catchment_2020['SWD'].mean(dim=("y", "x"), skipna=True).values
-north_2021_swd = north_catchment_2021['SWD'].mean(dim=("y", "x"), skipna=True).values
-north_2022_swd = north_catchment_2022['SWD'].mean(dim=("y", "x"), skipna=True).values
-north_2023_swd = north_catchment_2023['SWD'].mean(dim=("y", "x"), skipna=True).values
-north_2024_swd = north_catchment_2024['SWD'].mean(dim=("y", "x"), skipna=True).values
-
 # Rio Behar catchment mean shortwave upward
 rb_2000_swu = rb_catchment_2000['SWU'].mean(dim=("y", "x"), skipna=True).values
 rb_2001_swu = rb_catchment_2001['SWU'].mean(dim=("y", "x"), skipna=True).values
@@ -1430,33 +1092,6 @@ minturn_2021_swu = minturn_catchment_2021['SWU'].mean(dim=("y", "x"), skipna=Tru
 minturn_2022_swu = minturn_catchment_2022['SWU'].mean(dim=("y", "x"), skipna=True).values
 minturn_2023_swu = minturn_catchment_2023['SWU'].mean(dim=("y", "x"), skipna=True).values
 minturn_2024_swu = minturn_catchment_2024['SWU'].mean(dim=("y", "x"), skipna=True).values
-
-# North catchment mean shortwave upward
-north_2000_swu = north_catchment_2000['SWU'].mean(dim=("y", "x"), skipna=True).values
-north_2001_swu = north_catchment_2001['SWU'].mean(dim=("y", "x"), skipna=True).values
-north_2002_swu = north_catchment_2002['SWU'].mean(dim=("y", "x"), skipna=True).values
-north_2003_swu = north_catchment_2003['SWU'].mean(dim=("y", "x"), skipna=True).values
-north_2004_swu = north_catchment_2004['SWU'].mean(dim=("y", "x"), skipna=True).values
-north_2005_swu = north_catchment_2005['SWU'].mean(dim=("y", "x"), skipna=True).values
-north_2006_swu = north_catchment_2006['SWU'].mean(dim=("y", "x"), skipna=True).values
-north_2007_swu = north_catchment_2007['SWU'].mean(dim=("y", "x"), skipna=True).values
-north_2008_swu = north_catchment_2008['SWU'].mean(dim=("y", "x"), skipna=True).values
-north_2009_swu = north_catchment_2009['SWU'].mean(dim=("y", "x"), skipna=True).values
-north_2010_swu = north_catchment_2010['SWU'].mean(dim=("y", "x"), skipna=True).values
-north_2011_swu = north_catchment_2011['SWU'].mean(dim=("y", "x"), skipna=True).values
-north_2012_swu = north_catchment_2012['SWU'].mean(dim=("y", "x"), skipna=True).values
-north_2013_swu = north_catchment_2013['SWU'].mean(dim=("y", "x"), skipna=True).values
-north_2014_swu = north_catchment_2014['SWU'].mean(dim=("y", "x"), skipna=True).values
-north_2015_swu = north_catchment_2015['SWU'].mean(dim=("y", "x"), skipna=True).values
-north_2016_swu = north_catchment_2016['SWU'].mean(dim=("y", "x"), skipna=True).values
-north_2017_swu = north_catchment_2017['SWU'].mean(dim=("y", "x"), skipna=True).values
-north_2018_swu = north_catchment_2018['SWU'].mean(dim=("y", "x"), skipna=True).values
-north_2019_swu = north_catchment_2019['SWU'].mean(dim=("y", "x"), skipna=True).values
-north_2020_swu = north_catchment_2020['SWU'].mean(dim=("y", "x"), skipna=True).values
-north_2021_swu = north_catchment_2021['SWU'].mean(dim=("y", "x"), skipna=True).values
-north_2022_swu = north_catchment_2022['SWU'].mean(dim=("y", "x"), skipna=True).values
-north_2023_swu = north_catchment_2023['SWU'].mean(dim=("y", "x"), skipna=True).values
-north_2024_swu = north_catchment_2024['SWU'].mean(dim=("y", "x"), skipna=True).values
 
 # Rio Behar catchment mean longwave downward
 rb_2000_lwd = rb_catchment_2000['LWD'].mean(dim=("y", "x"), skipna=True).values
@@ -1539,33 +1174,6 @@ minturn_2022_lwd = minturn_catchment_2022['LWD'].mean(dim=("y", "x"), skipna=Tru
 minturn_2023_lwd = minturn_catchment_2023['LWD'].mean(dim=("y", "x"), skipna=True).values
 minturn_2024_lwd = minturn_catchment_2024['LWD'].mean(dim=("y", "x"), skipna=True).values
 
-# North catchment mean longwave downward
-north_2000_lwd = north_catchment_2000['LWD'].mean(dim=("y", "x"), skipna=True).values
-north_2001_lwd = north_catchment_2001['LWD'].mean(dim=("y", "x"), skipna=True).values
-north_2002_lwd = north_catchment_2002['LWD'].mean(dim=("y", "x"), skipna=True).values
-north_2003_lwd = north_catchment_2003['LWD'].mean(dim=("y", "x"), skipna=True).values
-north_2004_lwd = north_catchment_2004['LWD'].mean(dim=("y", "x"), skipna=True).values
-north_2005_lwd = north_catchment_2005['LWD'].mean(dim=("y", "x"), skipna=True).values
-north_2006_lwd = north_catchment_2006['LWD'].mean(dim=("y", "x"), skipna=True).values
-north_2007_lwd = north_catchment_2007['LWD'].mean(dim=("y", "x"), skipna=True).values
-north_2008_lwd = north_catchment_2008['LWD'].mean(dim=("y", "x"), skipna=True).values
-north_2009_lwd = north_catchment_2009['LWD'].mean(dim=("y", "x"), skipna=True).values
-north_2010_lwd = north_catchment_2010['LWD'].mean(dim=("y", "x"), skipna=True).values
-north_2011_lwd = north_catchment_2011['LWD'].mean(dim=("y", "x"), skipna=True).values
-north_2012_lwd = north_catchment_2012['LWD'].mean(dim=("y", "x"), skipna=True).values
-north_2013_lwd = north_catchment_2013['LWD'].mean(dim=("y", "x"), skipna=True).values
-north_2014_lwd = north_catchment_2014['LWD'].mean(dim=("y", "x"), skipna=True).values
-north_2015_lwd = north_catchment_2015['LWD'].mean(dim=("y", "x"), skipna=True).values
-north_2016_lwd = north_catchment_2016['LWD'].mean(dim=("y", "x"), skipna=True).values
-north_2017_lwd = north_catchment_2017['LWD'].mean(dim=("y", "x"), skipna=True).values
-north_2018_lwd = north_catchment_2018['LWD'].mean(dim=("y", "x"), skipna=True).values
-north_2019_lwd = north_catchment_2019['LWD'].mean(dim=("y", "x"), skipna=True).values
-north_2020_lwd = north_catchment_2020['LWD'].mean(dim=("y", "x"), skipna=True).values
-north_2021_lwd = north_catchment_2021['LWD'].mean(dim=("y", "x"), skipna=True).values
-north_2022_lwd = north_catchment_2022['LWD'].mean(dim=("y", "x"), skipna=True).values
-north_2023_lwd = north_catchment_2023['LWD'].mean(dim=("y", "x"), skipna=True).values
-north_2024_lwd = north_catchment_2024['LWD'].mean(dim=("y", "x"), skipna=True).values
-
 # Rio Behar catchment mean longwave upward
 rb_2000_lwu = rb_catchment_2000['LWU'].mean(dim=("y", "x"), skipna=True).values
 rb_2001_lwu = rb_catchment_2001['LWU'].mean(dim=("y", "x"), skipna=True).values
@@ -1646,33 +1254,6 @@ minturn_2021_lwu = minturn_catchment_2021['LWU'].mean(dim=("y", "x"), skipna=Tru
 minturn_2022_lwu = minturn_catchment_2022['LWU'].mean(dim=("y", "x"), skipna=True).values
 minturn_2023_lwu = minturn_catchment_2023['LWU'].mean(dim=("y", "x"), skipna=True).values
 minturn_2024_lwu = minturn_catchment_2024['LWU'].mean(dim=("y", "x"), skipna=True).values
-
-# North catchment mean longwave upward
-north_2000_lwu = north_catchment_2000['LWU'].mean(dim=("y", "x"), skipna=True).values
-north_2001_lwu = north_catchment_2001['LWU'].mean(dim=("y", "x"), skipna=True).values
-north_2002_lwu = north_catchment_2002['LWU'].mean(dim=("y", "x"), skipna=True).values
-north_2003_lwu = north_catchment_2003['LWU'].mean(dim=("y", "x"), skipna=True).values
-north_2004_lwu = north_catchment_2004['LWU'].mean(dim=("y", "x"), skipna=True).values
-north_2005_lwu = north_catchment_2005['LWU'].mean(dim=("y", "x"), skipna=True).values
-north_2006_lwu = north_catchment_2006['LWU'].mean(dim=("y", "x"), skipna=True).values
-north_2007_lwu = north_catchment_2007['LWU'].mean(dim=("y", "x"), skipna=True).values
-north_2008_lwu = north_catchment_2008['LWU'].mean(dim=("y", "x"), skipna=True).values
-north_2009_lwu = north_catchment_2009['LWU'].mean(dim=("y", "x"), skipna=True).values
-north_2010_lwu = north_catchment_2010['LWU'].mean(dim=("y", "x"), skipna=True).values
-north_2011_lwu = north_catchment_2011['LWU'].mean(dim=("y", "x"), skipna=True).values
-north_2012_lwu = north_catchment_2012['LWU'].mean(dim=("y", "x"), skipna=True).values
-north_2013_lwu = north_catchment_2013['LWU'].mean(dim=("y", "x"), skipna=True).values
-north_2014_lwu = north_catchment_2014['LWU'].mean(dim=("y", "x"), skipna=True).values
-north_2015_lwu = north_catchment_2015['LWU'].mean(dim=("y", "x"), skipna=True).values
-north_2016_lwu = north_catchment_2016['LWU'].mean(dim=("y", "x"), skipna=True).values
-north_2017_lwu = north_catchment_2017['LWU'].mean(dim=("y", "x"), skipna=True).values
-north_2018_lwu = north_catchment_2018['LWU'].mean(dim=("y", "x"), skipna=True).values
-north_2019_lwu = north_catchment_2019['LWU'].mean(dim=("y", "x"), skipna=True).values
-north_2020_lwu = north_catchment_2020['LWU'].mean(dim=("y", "x"), skipna=True).values
-north_2021_lwu = north_catchment_2021['LWU'].mean(dim=("y", "x"), skipna=True).values
-north_2022_lwu = north_catchment_2022['LWU'].mean(dim=("y", "x"), skipna=True).values
-north_2023_lwu = north_catchment_2023['LWU'].mean(dim=("y", "x"), skipna=True).values
-north_2024_lwu = north_catchment_2024['LWU'].mean(dim=("y", "x"), skipna=True).values
 
 # Rio Behar catchment mean sensible heat flux
 rb_2000_shf = rb_catchment_2000['SHF'].mean(dim=("y", "x"), skipna=True).values
@@ -1755,33 +1336,6 @@ minturn_2022_shf = minturn_catchment_2022['SHF'].mean(dim=("y", "x"), skipna=Tru
 minturn_2023_shf = minturn_catchment_2023['SHF'].mean(dim=("y", "x"), skipna=True).values
 minturn_2024_shf = minturn_catchment_2024['SHF'].mean(dim=("y", "x"), skipna=True).values
 
-# North catchment mean sensible heat flux
-north_2000_shf = north_catchment_2000['SHF'].mean(dim=("y", "x"), skipna=True).values
-north_2001_shf = north_catchment_2001['SHF'].mean(dim=("y", "x"), skipna=True).values
-north_2002_shf = north_catchment_2002['SHF'].mean(dim=("y", "x"), skipna=True).values
-north_2003_shf = north_catchment_2003['SHF'].mean(dim=("y", "x"), skipna=True).values
-north_2004_shf = north_catchment_2004['SHF'].mean(dim=("y", "x"), skipna=True).values
-north_2005_shf = north_catchment_2005['SHF'].mean(dim=("y", "x"), skipna=True).values
-north_2006_shf = north_catchment_2006['SHF'].mean(dim=("y", "x"), skipna=True).values
-north_2007_shf = north_catchment_2007['SHF'].mean(dim=("y", "x"), skipna=True).values
-north_2008_shf = north_catchment_2008['SHF'].mean(dim=("y", "x"), skipna=True).values
-north_2009_shf = north_catchment_2009['SHF'].mean(dim=("y", "x"), skipna=True).values
-north_2010_shf = north_catchment_2010['SHF'].mean(dim=("y", "x"), skipna=True).values
-north_2011_shf = north_catchment_2011['SHF'].mean(dim=("y", "x"), skipna=True).values
-north_2012_shf = north_catchment_2012['SHF'].mean(dim=("y", "x"), skipna=True).values
-north_2013_shf = north_catchment_2013['SHF'].mean(dim=("y", "x"), skipna=True).values
-north_2014_shf = north_catchment_2014['SHF'].mean(dim=("y", "x"), skipna=True).values
-north_2015_shf = north_catchment_2015['SHF'].mean(dim=("y", "x"), skipna=True).values
-north_2016_shf = north_catchment_2016['SHF'].mean(dim=("y", "x"), skipna=True).values
-north_2017_shf = north_catchment_2017['SHF'].mean(dim=("y", "x"), skipna=True).values
-north_2018_shf = north_catchment_2018['SHF'].mean(dim=("y", "x"), skipna=True).values
-north_2019_shf = north_catchment_2019['SHF'].mean(dim=("y", "x"), skipna=True).values
-north_2020_shf = north_catchment_2020['SHF'].mean(dim=("y", "x"), skipna=True).values
-north_2021_shf = north_catchment_2021['SHF'].mean(dim=("y", "x"), skipna=True).values
-north_2022_shf = north_catchment_2022['SHF'].mean(dim=("y", "x"), skipna=True).values
-north_2023_shf = north_catchment_2023['SHF'].mean(dim=("y", "x"), skipna=True).values
-north_2024_shf = north_catchment_2024['SHF'].mean(dim=("y", "x"), skipna=True).values
-
 # Rio Behar catchment mean latent heat flux
 rb_2000_lhf = rb_catchment_2000['LHF'].mean(dim=("y", "x"), skipna=True).values
 rb_2001_lhf = rb_catchment_2001['LHF'].mean(dim=("y", "x"), skipna=True).values
@@ -1862,33 +1416,6 @@ minturn_2021_lhf = minturn_catchment_2021['LHF'].mean(dim=("y", "x"), skipna=Tru
 minturn_2022_lhf = minturn_catchment_2022['LHF'].mean(dim=("y", "x"), skipna=True).values
 minturn_2023_lhf = minturn_catchment_2023['LHF'].mean(dim=("y", "x"), skipna=True).values
 minturn_2024_lhf = minturn_catchment_2024['LHF'].mean(dim=("y", "x"), skipna=True).values
-
-# North catchment mean latent heat flux
-north_2000_lhf = north_catchment_2000['LHF'].mean(dim=("y", "x"), skipna=True).values
-north_2001_lhf = north_catchment_2001['LHF'].mean(dim=("y", "x"), skipna=True).values
-north_2002_lhf = north_catchment_2002['LHF'].mean(dim=("y", "x"), skipna=True).values
-north_2003_lhf = north_catchment_2003['LHF'].mean(dim=("y", "x"), skipna=True).values
-north_2004_lhf = north_catchment_2004['LHF'].mean(dim=("y", "x"), skipna=True).values
-north_2005_lhf = north_catchment_2005['LHF'].mean(dim=("y", "x"), skipna=True).values
-north_2006_lhf = north_catchment_2006['LHF'].mean(dim=("y", "x"), skipna=True).values
-north_2007_lhf = north_catchment_2007['LHF'].mean(dim=("y", "x"), skipna=True).values
-north_2008_lhf = north_catchment_2008['LHF'].mean(dim=("y", "x"), skipna=True).values
-north_2009_lhf = north_catchment_2009['LHF'].mean(dim=("y", "x"), skipna=True).values
-north_2010_lhf = north_catchment_2010['LHF'].mean(dim=("y", "x"), skipna=True).values
-north_2011_lhf = north_catchment_2011['LHF'].mean(dim=("y", "x"), skipna=True).values
-north_2012_lhf = north_catchment_2012['LHF'].mean(dim=("y", "x"), skipna=True).values
-north_2013_lhf = north_catchment_2013['LHF'].mean(dim=("y", "x"), skipna=True).values
-north_2014_lhf = north_catchment_2014['LHF'].mean(dim=("y", "x"), skipna=True).values
-north_2015_lhf = north_catchment_2015['LHF'].mean(dim=("y", "x"), skipna=True).values
-north_2016_lhf = north_catchment_2016['LHF'].mean(dim=("y", "x"), skipna=True).values
-north_2017_lhf = north_catchment_2017['LHF'].mean(dim=("y", "x"), skipna=True).values
-north_2018_lhf = north_catchment_2018['LHF'].mean(dim=("y", "x"), skipna=True).values
-north_2019_lhf = north_catchment_2019['LHF'].mean(dim=("y", "x"), skipna=True).values
-north_2020_lhf = north_catchment_2020['LHF'].mean(dim=("y", "x"), skipna=True).values
-north_2021_lhf = north_catchment_2021['LHF'].mean(dim=("y", "x"), skipna=True).values
-north_2022_lhf = north_catchment_2022['LHF'].mean(dim=("y", "x"), skipna=True).values
-north_2023_lhf = north_catchment_2023['LHF'].mean(dim=("y", "x"), skipna=True).values
-north_2024_lhf = north_catchment_2024['LHF'].mean(dim=("y", "x"), skipna=True).values
 
 # Rio Behar catchment mean surface energy balance
 # SEB = (SWD - SWU) + (LWD - LWU) + SHF + LHF
@@ -1973,34 +1500,6 @@ minturn_2021_seb = (minturn_2021_swd - minturn_2021_swu) + (minturn_2021_lwd - m
 minturn_2022_seb = (minturn_2022_swd - minturn_2022_swu) + (minturn_2022_lwd - minturn_2022_lwu) + minturn_2022_shf + minturn_2022_lhf
 minturn_2023_seb = (minturn_2023_swd - minturn_2023_swu) + (minturn_2023_lwd - minturn_2023_lwu) + minturn_2023_shf + minturn_2023_lhf
 minturn_2024_seb = (minturn_2024_swd - minturn_2024_swu) + (minturn_2024_lwd - minturn_2024_lwu) + minturn_2024_shf + minturn_2024_lhf
-
-# North catchment mean surface energy balance
-# SEB = (SWD - SWU) + (LWD - LWU) + SHF + LHF
-north_2000_seb = (north_2000_swd - north_2000_swu) + (north_2000_lwd - north_2000_lwu) + north_2000_shf + north_2000_lhf
-north_2001_seb = (north_2001_swd - north_2001_swu) + (north_2001_lwd - north_2001_lwu) + north_2001_shf + north_2001_lhf
-north_2002_seb = (north_2002_swd - north_2002_swu) + (north_2002_lwd - north_2002_lwu) + north_2002_shf + north_2002_lhf
-north_2003_seb = (north_2003_swd - north_2003_swu) + (north_2003_lwd - north_2003_lwu) + north_2003_shf + north_2003_lhf
-north_2004_seb = (north_2004_swd - north_2004_swu) + (north_2004_lwd - north_2004_lwu) + north_2004_shf + north_2004_lhf
-north_2005_seb = (north_2005_swd - north_2005_swu) + (north_2005_lwd - north_2005_lwu) + north_2005_shf + north_2005_lhf
-north_2006_seb = (north_2006_swd - north_2006_swu) + (north_2006_lwd - north_2006_lwu) + north_2006_shf + north_2006_lhf
-north_2007_seb = (north_2007_swd - north_2007_swu) + (north_2007_lwd - north_2007_lwu) + north_2007_shf + north_2007_lhf
-north_2008_seb = (north_2008_swd - north_2008_swu) + (north_2008_lwd - north_2008_lwu) + north_2008_shf + north_2008_lhf
-north_2009_seb = (north_2009_swd - north_2009_swu) + (north_2009_lwd - north_2009_lwu) + north_2009_shf + north_2009_lhf
-north_2010_seb = (north_2010_swd - north_2010_swu) + (north_2010_lwd - north_2010_lwu) + north_2010_shf + north_2010_lhf
-north_2011_seb = (north_2011_swd - north_2011_swu) + (north_2011_lwd - north_2011_lwu) + north_2011_shf + north_2011_lhf
-north_2012_seb = (north_2012_swd - north_2012_swu) + (north_2012_lwd - north_2012_lwu) + north_2012_shf + north_2012_lhf
-north_2013_seb = (north_2013_swd - north_2013_swu) + (north_2013_lwd - north_2013_lwu) + north_2013_shf + north_2013_lhf
-north_2014_seb = (north_2014_swd - north_2014_swu) + (north_2014_lwd - north_2014_lwu) + north_2014_shf + north_2014_lhf
-north_2015_seb = (north_2015_swd - north_2015_swu) + (north_2015_lwd - north_2015_lwu) + north_2015_shf + north_2015_lhf
-north_2016_seb = (north_2016_swd - north_2016_swu) + (north_2016_lwd - north_2016_lwu) + north_2016_shf + north_2016_lhf
-north_2017_seb = (north_2017_swd - north_2017_swu) + (north_2017_lwd - north_2017_lwu) + north_2017_shf + north_2017_lhf
-north_2018_seb = (north_2018_swd - north_2018_swu) + (north_2018_lwd - north_2018_lwu) + north_2018_shf + north_2018_lhf
-north_2019_seb = (north_2019_swd - north_2019_swu) + (north_2019_lwd - north_2019_lwu) + north_2019_shf + north_2019_lhf
-north_2020_seb = (north_2020_swd - north_2020_swu) + (north_2020_lwd - north_2020_lwu) + north_2020_shf + north_2020_lhf
-north_2021_seb = (north_2021_swd - north_2021_swu) + (north_2021_lwd - north_2021_lwu) + north_2021_shf + north_2021_lhf
-north_2022_seb = (north_2022_swd - north_2022_swu) + (north_2022_lwd - north_2022_lwu) + north_2022_shf + north_2022_lhf
-north_2023_seb = (north_2023_swd - north_2023_swu) + (north_2023_lwd - north_2023_lwu) + north_2023_shf + north_2023_lhf
-north_2024_seb = (north_2024_swd - north_2024_swu) + (north_2024_lwd - north_2024_lwu) + north_2024_shf + north_2024_lhf
 
 # Rio Behar catchment area-weighted mean runoff = meltwater + rainfall
 # Use Sector 0 for runoff
@@ -2308,108 +1807,6 @@ minturn_effective_area_2024 = minturn_catchment_2024['AREA'] * minturn_fraction
 minturn_2024_ru = ((minturn_catchment_2024['RU'].isel(SECTOR=0) * minturn_effective_area_2024).sum(dim=('y', 'x'), skipna=True) / minturn_effective_area_2024.sum(dim=('y', 'x'), skipna=True))
 minturn_2024_ru = minturn_2024_ru.to_array().to_numpy().T
 
-# North catchment area-weighted mean runoff = meltwater + rainfall
-# Use Sector 0 for runoff
-north_effective_area_2000 = north_catchment_2000['AREA'] * north_fraction
-north_2000_ru = ((north_catchment_2000['RU'].isel(SECTOR=0) * north_effective_area_2000).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2000.sum(dim=('y', 'x'), skipna=True))
-north_2000_ru = north_2000_ru.to_array().to_numpy().T
-
-north_effective_area_2001 = north_catchment_2001['AREA'] * north_fraction
-north_2001_ru = ((north_catchment_2001['RU'].isel(SECTOR=0) * north_effective_area_2001).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2001.sum(dim=('y', 'x'), skipna=True))
-north_2001_ru = north_2001_ru.to_array().to_numpy().T
-
-north_effective_area_2002 = north_catchment_2002['AREA'] * north_fraction
-north_2002_ru = ((north_catchment_2002['RU'].isel(SECTOR=0) * north_effective_area_2002).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2002.sum(dim=('y', 'x'), skipna=True))
-north_2002_ru = north_2002_ru.to_array().to_numpy().T
-
-north_effective_area_2003 = north_catchment_2003['AREA'] * north_fraction
-north_2003_ru = ((north_catchment_2003['RU'].isel(SECTOR=0) * north_effective_area_2003).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2003.sum(dim=('y', 'x'), skipna=True))
-north_2003_ru = north_2003_ru.to_array().to_numpy().T
-
-north_effective_area_2004 = north_catchment_2004['AREA'] * north_fraction
-north_2004_ru = ((north_catchment_2004['RU'].isel(SECTOR=0) * north_effective_area_2004).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2004.sum(dim=('y', 'x'), skipna=True))
-north_2004_ru = north_2004_ru.to_array().to_numpy().T
-
-north_effective_area_2005 = north_catchment_2005['AREA'] * north_fraction
-north_2005_ru = ((north_catchment_2005['RU'].isel(SECTOR=0) * north_effective_area_2005).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2005.sum(dim=('y', 'x'), skipna=True))
-north_2005_ru = north_2005_ru.to_array().to_numpy().T
-
-north_effective_area_2006 = north_catchment_2006['AREA'] * north_fraction
-north_2006_ru = ((north_catchment_2006['RU'].isel(SECTOR=0) * north_effective_area_2006).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2006.sum(dim=('y', 'x'), skipna=True))
-north_2006_ru = north_2006_ru.to_array().to_numpy().T
-
-north_effective_area_2007 = north_catchment_2007['AREA'] * north_fraction
-north_2007_ru = ((north_catchment_2007['RU'].isel(SECTOR=0) * north_effective_area_2007).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2007.sum(dim=('y', 'x'), skipna=True))
-north_2007_ru = north_2007_ru.to_array().to_numpy().T
-
-north_effective_area_2008 = north_catchment_2008['AREA'] * north_fraction
-north_2008_ru = ((north_catchment_2008['RU'].isel(SECTOR=0) * north_effective_area_2008).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2008.sum(dim=('y', 'x'), skipna=True))
-north_2008_ru = north_2008_ru.to_array().to_numpy().T
-
-north_effective_area_2009 = north_catchment_2009['AREA'] * north_fraction
-north_2009_ru = ((north_catchment_2009['RU'].isel(SECTOR=0) * north_effective_area_2009).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2009.sum(dim=('y', 'x'), skipna=True))
-north_2009_ru = north_2009_ru.to_array().to_numpy().T
-
-north_effective_area_2010 = north_catchment_2010['AREA'] * north_fraction
-north_2010_ru = ((north_catchment_2010['RU'].isel(SECTOR=0) * north_effective_area_2010).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2010.sum(dim=('y', 'x'), skipna=True))
-north_2010_ru = north_2010_ru.to_array().to_numpy().T
-
-north_effective_area_2011 = north_catchment_2011['AREA'] * north_fraction
-north_2011_ru = ((north_catchment_2011['RU'].isel(SECTOR=0) * north_effective_area_2011).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2011.sum(dim=('y', 'x'), skipna=True))
-north_2011_ru = north_2011_ru.to_array().to_numpy().T
-
-north_effective_area_2012 = north_catchment_2012['AREA'] * north_fraction
-north_2012_ru = ((north_catchment_2012['RU'].isel(SECTOR=0) * north_effective_area_2012).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2012.sum(dim=('y', 'x'), skipna=True))
-north_2012_ru = north_2012_ru.to_array().to_numpy().T
-
-north_effective_area_2013 = north_catchment_2013['AREA'] * north_fraction
-north_2013_ru = ((north_catchment_2013['RU'].isel(SECTOR=0) * north_effective_area_2013).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2013.sum(dim=('y', 'x'), skipna=True))
-north_2013_ru = north_2013_ru.to_array().to_numpy().T
-
-north_effective_area_2014 = north_catchment_2014['AREA'] * north_fraction
-north_2014_ru = ((north_catchment_2014['RU'].isel(SECTOR=0) * north_effective_area_2014).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2014.sum(dim=('y', 'x'), skipna=True))
-north_2014_ru = north_2014_ru.to_array().to_numpy().T
-
-north_effective_area_2015 = north_catchment_2015['AREA'] * north_fraction
-north_2015_ru = ((north_catchment_2015['RU'].isel(SECTOR=0) * north_effective_area_2015).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2015.sum(dim=('y', 'x'), skipna=True))
-north_2015_ru = north_2015_ru.to_array().to_numpy().T
-
-north_effective_area_2016 = north_catchment_2016['AREA'] * north_fraction
-north_2016_ru = ((north_catchment_2016['RU'].isel(SECTOR=0) * north_effective_area_2016).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2016.sum(dim=('y', 'x'), skipna=True))
-north_2016_ru = north_2016_ru.to_array().to_numpy().T
-
-north_effective_area_2017 = north_catchment_2017['AREA'] * north_fraction
-north_2017_ru = ((north_catchment_2017['RU'].isel(SECTOR=0) * north_effective_area_2017).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2017.sum(dim=('y', 'x'), skipna=True))
-north_2017_ru = north_2017_ru.to_array().to_numpy().T
-
-north_effective_area_2018 = north_catchment_2018['AREA'] * north_fraction
-north_2018_ru = ((north_catchment_2018['RU'].isel(SECTOR=0) * north_effective_area_2018).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2018.sum(dim=('y', 'x'), skipna=True))
-north_2018_ru = north_2018_ru.to_array().to_numpy().T
-
-north_effective_area_2019 = north_catchment_2019['AREA'] * north_fraction
-north_2019_ru = ((north_catchment_2019['RU'].isel(SECTOR=0) * north_effective_area_2019).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2019.sum(dim=('y', 'x'), skipna=True))
-north_2019_ru = north_2019_ru.to_array().to_numpy().T
-
-north_effective_area_2020 = north_catchment_2020['AREA'] * north_fraction
-north_2020_ru = ((north_catchment_2020['RU'].isel(SECTOR=0) * north_effective_area_2020).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2020.sum(dim=('y', 'x'), skipna=True))
-north_2020_ru = north_2020_ru.to_array().to_numpy().T
-
-north_effective_area_2021 = north_catchment_2021['AREA'] * north_fraction
-north_2021_ru = ((north_catchment_2021['RU'].isel(SECTOR=0) * north_effective_area_2021).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2021.sum(dim=('y', 'x'), skipna=True))
-north_2021_ru = north_2021_ru.to_array().to_numpy().T
-
-north_effective_area_2022 = north_catchment_2022['AREA'] * north_fraction
-north_2022_ru = ((north_catchment_2022['RU'].isel(SECTOR=0) * north_effective_area_2022).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2022.sum(dim=('y', 'x'), skipna=True))
-north_2022_ru = north_2022_ru.to_array().to_numpy().T
-
-north_effective_area_2023 = north_catchment_2023['AREA'] * north_fraction
-north_2023_ru = ((north_catchment_2023['RU'].isel(SECTOR=0) * north_effective_area_2023).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2023.sum(dim=('y', 'x'), skipna=True))
-north_2023_ru = north_2023_ru.to_array().to_numpy().T
-
-north_effective_area_2024 = north_catchment_2024['AREA'] * north_fraction
-north_2024_ru = ((north_catchment_2024['RU'].isel(SECTOR=0) * north_effective_area_2024).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2024.sum(dim=('y', 'x'), skipna=True))
-north_2024_ru = north_2024_ru.to_array().to_numpy().T
-
 # Rio Behar catchment area-weighted mean rainfall
 rb_2000_rf = ((rb_catchment_2000['RF'] * rb_effective_area_2000).sum(dim=('y', 'x'), skipna=True) / rb_effective_area_2000.sum(dim=('y', 'x'), skipna=True))
 rb_2000_rf = rb_2000_rf.to_array().to_numpy().T
@@ -2638,82 +2035,6 @@ minturn_2023_rf = minturn_2023_rf.to_array().to_numpy().T
 minturn_2024_rf = ((minturn_catchment_2024['RF'] * minturn_effective_area_2024).sum(dim=('y', 'x'), skipna=True) / minturn_effective_area_2024.sum(dim=('y', 'x'), skipna=True))
 minturn_2024_rf = minturn_2024_rf.to_array().to_numpy().T
 
-# North catchment area-weighted mean rainfall
-north_2000_rf = ((north_catchment_2000['RF'] * north_effective_area_2000).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2000.sum(dim=('y', 'x'), skipna=True))
-north_2000_rf = north_2000_rf.to_array().to_numpy().T
-
-north_2001_rf = ((north_catchment_2001['RF'] * north_effective_area_2001).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2001.sum(dim=('y', 'x'), skipna=True))
-north_2001_rf = north_2001_rf.to_array().to_numpy().T
-
-north_2002_rf = ((north_catchment_2002['RF'] * north_effective_area_2002).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2002.sum(dim=('y', 'x'), skipna=True))
-north_2002_rf = north_2002_rf.to_array().to_numpy().T
-
-north_2003_rf = ((north_catchment_2003['RF'] * north_effective_area_2003).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2003.sum(dim=('y', 'x'), skipna=True))
-north_2003_rf = north_2003_rf.to_array().to_numpy().T
-
-north_2004_rf = ((north_catchment_2004['RF'] * north_effective_area_2004).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2004.sum(dim=('y', 'x'), skipna=True))
-north_2004_rf = north_2004_rf.to_array().to_numpy().T
-
-north_2005_rf = ((north_catchment_2005['RF'] * north_effective_area_2005).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2005.sum(dim=('y', 'x'), skipna=True))
-north_2005_rf = north_2005_rf.to_array().to_numpy().T
-
-north_2006_rf = ((north_catchment_2006['RF'] * north_effective_area_2006).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2006.sum(dim=('y', 'x'), skipna=True))
-north_2006_rf = north_2006_rf.to_array().to_numpy().T
-
-north_2007_rf = ((north_catchment_2007['RF'] * north_effective_area_2007).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2007.sum(dim=('y', 'x'), skipna=True))
-north_2007_rf = north_2007_rf.to_array().to_numpy().T
-
-north_2008_rf = ((north_catchment_2008['RF'] * north_effective_area_2008).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2008.sum(dim=('y', 'x'), skipna=True))
-north_2008_rf = north_2008_rf.to_array().to_numpy().T
-
-north_2009_rf = ((north_catchment_2009['RF'] * north_effective_area_2009).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2009.sum(dim=('y', 'x'), skipna=True))
-north_2009_rf = north_2009_rf.to_array().to_numpy().T
-
-north_2010_rf = ((north_catchment_2010['RF'] * north_effective_area_2010).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2010.sum(dim=('y', 'x'), skipna=True))
-north_2010_rf = north_2010_rf.to_array().to_numpy().T
-
-north_2011_rf = ((north_catchment_2011['RF'] * north_effective_area_2011).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2011.sum(dim=('y', 'x'), skipna=True))
-north_2011_rf = north_2011_rf.to_array().to_numpy().T
-
-north_2012_rf = ((north_catchment_2012['RF'] * north_effective_area_2012).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2012.sum(dim=('y', 'x'), skipna=True))
-north_2012_rf = north_2012_rf.to_array().to_numpy().T
-
-north_2013_rf = ((north_catchment_2013['RF'] * north_effective_area_2013).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2013.sum(dim=('y', 'x'), skipna=True))
-north_2013_rf = north_2013_rf.to_array().to_numpy().T
-
-north_2014_rf = ((north_catchment_2014['RF'] * north_effective_area_2014).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2014.sum(dim=('y', 'x'), skipna=True))
-north_2014_rf = north_2014_rf.to_array().to_numpy().T
-
-north_2015_rf = ((north_catchment_2015['RF'] * north_effective_area_2015).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2015.sum(dim=('y', 'x'), skipna=True))
-north_2015_rf = north_2015_rf.to_array().to_numpy().T
-
-north_2016_rf = ((north_catchment_2016['RF'] * north_effective_area_2016).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2016.sum(dim=('y', 'x'), skipna=True))
-north_2016_rf = north_2016_rf.to_array().to_numpy().T
-
-north_2017_rf = ((north_catchment_2017['RF'] * north_effective_area_2017).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2017.sum(dim=('y', 'x'), skipna=True))
-north_2017_rf = north_2017_rf.to_array().to_numpy().T
-
-north_2018_rf = ((north_catchment_2018['RF'] * north_effective_area_2018).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2018.sum(dim=('y', 'x'), skipna=True))
-north_2018_rf = north_2018_rf.to_array().to_numpy().T
-
-north_2019_rf = ((north_catchment_2019['RF'] * north_effective_area_2019).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2019.sum(dim=('y', 'x'), skipna=True))
-north_2019_rf = north_2019_rf.to_array().to_numpy().T
-
-north_2020_rf = ((north_catchment_2020['RF'] * north_effective_area_2020).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2020.sum(dim=('y', 'x'), skipna=True))
-north_2020_rf = north_2020_rf.to_array().to_numpy().T
-
-north_2021_rf = ((north_catchment_2021['RF'] * north_effective_area_2021).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2021.sum(dim=('y', 'x'), skipna=True))
-north_2021_rf = north_2021_rf.to_array().to_numpy().T
-
-north_2022_rf = ((north_catchment_2022['RF'] * north_effective_area_2022).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2022.sum(dim=('y', 'x'), skipna=True))
-north_2022_rf = north_2022_rf.to_array().to_numpy().T
-
-north_2023_rf = ((north_catchment_2023['RF'] * north_effective_area_2023).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2023.sum(dim=('y', 'x'), skipna=True))
-north_2023_rf = north_2023_rf.to_array().to_numpy().T
-
-north_2024_rf = ((north_catchment_2024['RF'] * north_effective_area_2024).sum(dim=('y', 'x'), skipna=True) / north_effective_area_2024.sum(dim=('y', 'x'), skipna=True))
-north_2024_rf = north_2024_rf.to_array().to_numpy().T
-
 # Rio Behar catchment area-weighted mean meltwater runoff = runoff - rainfall
 rb_2000_mru = rb_2000_ru - rb_2000_rf
 rb_2001_mru = rb_2001_ru - rb_2001_rf
@@ -2794,33 +2115,6 @@ minturn_2021_mru = minturn_2021_ru - minturn_2021_rf
 minturn_2022_mru = minturn_2022_ru - minturn_2022_rf
 minturn_2023_mru = minturn_2023_ru - minturn_2023_rf
 minturn_2024_mru = minturn_2024_ru - minturn_2024_rf
-
-# North catchment area-weighted mean meltwater runoff = runoff - rainfall
-north_2000_mru = north_2000_ru - north_2000_rf
-north_2001_mru = north_2001_ru - north_2001_rf
-north_2002_mru = north_2002_ru - north_2002_rf
-north_2003_mru = north_2003_ru - north_2003_rf
-north_2004_mru = north_2004_ru - north_2004_rf
-north_2005_mru = north_2005_ru - north_2005_rf
-north_2006_mru = north_2006_ru - north_2006_rf
-north_2007_mru = north_2007_ru - north_2007_rf
-north_2008_mru = north_2008_ru - north_2008_rf
-north_2009_mru = north_2009_ru - north_2009_rf
-north_2010_mru = north_2010_ru - north_2010_rf
-north_2011_mru = north_2011_ru - north_2011_rf
-north_2012_mru = north_2012_ru - north_2012_rf
-north_2013_mru = north_2013_ru - north_2013_rf
-north_2014_mru = north_2014_ru - north_2014_rf
-north_2015_mru = north_2015_ru - north_2015_rf
-north_2016_mru = north_2016_ru - north_2016_rf
-north_2017_mru = north_2017_ru - north_2017_rf
-north_2018_mru = north_2018_ru - north_2018_rf
-north_2019_mru = north_2019_ru - north_2019_rf
-north_2020_mru = north_2020_ru - north_2020_rf
-north_2021_mru = north_2021_ru - north_2021_rf
-north_2022_mru = north_2022_ru - north_2022_rf
-north_2023_mru = north_2023_ru - north_2023_rf
-north_2024_mru = north_2024_ru - north_2024_rf
 
 # Function to make arrays 1D before putting into df
 
@@ -3908,363 +3202,6 @@ minturn_catchment_2000_2024_df = pd.concat([minturn_catchment_2000_df,
                                             minturn_catchment_2024_df],
                                            ignore_index=True)
 
-# Save North variables to dataframe
-north_catchment_2000_df = pd.DataFrame({"time": to_1d(north_2000_time),
-                                           "air_temp": to_1d(north_2000_air_temp[:, 0]),
-                                          "ice_temp": to_1d(north_2000_ice_temp[:, 0]),
-                                           "albedo": to_1d(north_2000_albedo[:, 0]),
-                                           "shortwave_down": to_1d(north_2000_swd),
-                                           "shortwave_up": to_1d(north_2000_swu),
-                                           "longwave_down": to_1d(north_2000_lwd),
-                                           "longwave_up": to_1d(north_2000_lwu),
-                                           "sensible_heat_flux": to_1d(north_2000_shf),
-                                           "latent_heat_flux": to_1d(north_2000_lhf),
-                                           "surface_energy_balance": to_1d(north_2000_seb),
-                                           "meltwater_runoff": to_1d(north_2000_mru)})
-
-north_catchment_2001_df = pd.DataFrame({"time": to_1d(north_2001_time),
-                                           "air_temp": to_1d(north_2001_air_temp[:, 0]),
-                                          "ice_temp": to_1d(north_2001_ice_temp[:, 0]),
-                                           "albedo": to_1d(north_2001_albedo[:, 0]),
-                                           "shortwave_down": to_1d(north_2001_swd),
-                                           "shortwave_up": to_1d(north_2001_swu),
-                                           "longwave_down": to_1d(north_2001_lwd),
-                                           "longwave_up": to_1d(north_2001_lwu),
-                                           "sensible_heat_flux": to_1d(north_2001_shf),
-                                           "latent_heat_flux": to_1d(north_2001_lhf),
-                                           "surface_energy_balance": to_1d(north_2001_seb),
-                                           "meltwater_runoff": to_1d(north_2001_mru)})
-
-north_catchment_2002_df = pd.DataFrame({"time": to_1d(north_2002_time),
-                                           "air_temp": to_1d(north_2002_air_temp[:, 0]),
-                                          "ice_temp": to_1d(north_2002_ice_temp[:, 0]),
-                                           "albedo": to_1d(north_2002_albedo[:, 0]),
-                                           "shortwave_down": to_1d(north_2002_swd),
-                                           "shortwave_up": to_1d(north_2002_swu),
-                                           "longwave_down": to_1d(north_2002_lwd),
-                                           "longwave_up": to_1d(north_2002_lwu),
-                                           "sensible_heat_flux": to_1d(north_2002_shf),
-                                           "latent_heat_flux": to_1d(north_2002_lhf),
-                                           "surface_energy_balance": to_1d(north_2002_seb),
-                                           "meltwater_runoff": to_1d(north_2002_mru)})
-
-north_catchment_2003_df = pd.DataFrame({"time": to_1d(north_2003_time),
-                                           "air_temp": to_1d(north_2003_air_temp[:, 0]),
-                                          "ice_temp": to_1d(north_2003_ice_temp[:, 0]),
-                                           "albedo": to_1d(north_2003_albedo[:, 0]),
-                                           "shortwave_down": to_1d(north_2003_swd),
-                                           "shortwave_up": to_1d(north_2003_swu),
-                                           "longwave_down": to_1d(north_2003_lwd),
-                                           "longwave_up": to_1d(north_2003_lwu),
-                                           "sensible_heat_flux": to_1d(north_2003_shf),
-                                           "latent_heat_flux": to_1d(north_2003_lhf),
-                                           "surface_energy_balance": to_1d(north_2003_seb),
-                                           "meltwater_runoff": to_1d(north_2003_mru)})
-
-north_catchment_2004_df = pd.DataFrame({"time": to_1d(north_2004_time),
-                                           "air_temp": to_1d(north_2004_air_temp[:, 0]),
-                                          "ice_temp": to_1d(north_2004_ice_temp[:, 0]),
-                                           "albedo": to_1d(north_2004_albedo[:, 0]),
-                                           "shortwave_down": to_1d(north_2004_swd),
-                                           "shortwave_up": to_1d(north_2004_swu),
-                                           "longwave_down": to_1d(north_2004_lwd),
-                                           "longwave_up": to_1d(north_2004_lwu),
-                                           "sensible_heat_flux": to_1d(north_2004_shf),
-                                           "latent_heat_flux": to_1d(north_2004_lhf),
-                                           "surface_energy_balance": to_1d(north_2004_seb),
-                                           "meltwater_runoff": to_1d(north_2004_mru)})
-
-north_catchment_2005_df = pd.DataFrame({"time": to_1d(north_2005_time),
-                                           "air_temp": to_1d(north_2005_air_temp[:, 0]),
-                                          "ice_temp": to_1d(north_2005_ice_temp[:, 0]),
-                                           "albedo": to_1d(north_2005_albedo[:, 0]),
-                                           "shortwave_down": to_1d(north_2005_swd),
-                                           "shortwave_up": to_1d(north_2005_swu),
-                                           "longwave_down": to_1d(north_2005_lwd),
-                                           "longwave_up": to_1d(north_2005_lwu),
-                                           "sensible_heat_flux": to_1d(north_2005_shf),
-                                           "latent_heat_flux": to_1d(north_2005_lhf),
-                                           "surface_energy_balance": to_1d(north_2005_seb),
-                                           "meltwater_runoff": to_1d(north_2005_mru)})
-
-north_catchment_2006_df = pd.DataFrame({"time": to_1d(north_2006_time),
-                                           "air_temp": to_1d(north_2006_air_temp[:, 0]),
-                                          "ice_temp": to_1d(north_2006_ice_temp[:, 0]),
-                                           "albedo": to_1d(north_2006_albedo[:, 0]),
-                                           "shortwave_down": to_1d(north_2006_swd),
-                                           "shortwave_up": to_1d(north_2006_swu),
-                                           "longwave_down": to_1d(north_2006_lwd),
-                                           "longwave_up": to_1d(north_2006_lwu),
-                                           "sensible_heat_flux": to_1d(north_2006_shf),
-                                           "latent_heat_flux": to_1d(north_2006_lhf),
-                                           "surface_energy_balance": to_1d(north_2006_seb),
-                                           "meltwater_runoff": to_1d(north_2006_mru)})
-
-north_catchment_2007_df = pd.DataFrame({"time": to_1d(north_2007_time),
-                                           "air_temp": to_1d(north_2007_air_temp[:, 0]),
-                                          "ice_temp": to_1d(north_2007_ice_temp[:, 0]),
-                                           "albedo": to_1d(north_2007_albedo[:, 0]),
-                                           "shortwave_down": to_1d(north_2007_swd),
-                                           "shortwave_up": to_1d(north_2007_swu),
-                                           "longwave_down": to_1d(north_2007_lwd),
-                                           "longwave_up": to_1d(north_2007_lwu),
-                                           "sensible_heat_flux": to_1d(north_2007_shf),
-                                           "latent_heat_flux": to_1d(north_2007_lhf),
-                                           "surface_energy_balance": to_1d(north_2007_seb),
-                                           "meltwater_runoff": to_1d(north_2007_mru)})
-
-north_catchment_2008_df = pd.DataFrame({"time": to_1d(north_2008_time),
-                                           "air_temp": to_1d(north_2008_air_temp[:, 0]),
-                                          "ice_temp": to_1d(north_2008_ice_temp[:, 0]),
-                                           "albedo": to_1d(north_2008_albedo[:, 0]),
-                                           "shortwave_down": to_1d(north_2008_swd),
-                                           "shortwave_up": to_1d(north_2008_swu),
-                                           "longwave_down": to_1d(north_2008_lwd),
-                                           "longwave_up": to_1d(north_2008_lwu),
-                                           "sensible_heat_flux": to_1d(north_2008_shf),
-                                           "latent_heat_flux": to_1d(north_2008_lhf),
-                                           "surface_energy_balance": to_1d(north_2008_seb),
-                                           "meltwater_runoff": to_1d(north_2008_mru)})
-
-north_catchment_2009_df = pd.DataFrame({"time": to_1d(north_2009_time),
-                                           "air_temp": to_1d(north_2009_air_temp[:, 0]),
-                                          "ice_temp": to_1d(north_2009_ice_temp[:, 0]),
-                                           "albedo": to_1d(north_2009_albedo[:, 0]),
-                                           "shortwave_down": to_1d(north_2009_swd),
-                                           "shortwave_up": to_1d(north_2009_swu),
-                                           "longwave_down": to_1d(north_2009_lwd),
-                                           "longwave_up": to_1d(north_2009_lwu),
-                                           "sensible_heat_flux": to_1d(north_2009_shf),
-                                           "latent_heat_flux": to_1d(north_2009_lhf),
-                                           "surface_energy_balance": to_1d(north_2009_seb),
-                                           "meltwater_runoff": to_1d(north_2009_mru)})
-
-north_catchment_2010_df = pd.DataFrame({"time": to_1d(north_2010_time),
-                                           "air_temp": to_1d(north_2010_air_temp[:, 0]),
-                                          "ice_temp": to_1d(north_2010_ice_temp[:, 0]),
-                                           "albedo": to_1d(north_2010_albedo[:, 0]),
-                                           "shortwave_down": to_1d(north_2010_swd),
-                                           "shortwave_up": to_1d(north_2010_swu),
-                                           "longwave_down": to_1d(north_2010_lwd),
-                                           "longwave_up": to_1d(north_2010_lwu),
-                                           "sensible_heat_flux": to_1d(north_2010_shf),
-                                           "latent_heat_flux": to_1d(north_2010_lhf),
-                                           "surface_energy_balance": to_1d(north_2010_seb),
-                                           "meltwater_runoff": to_1d(north_2010_mru)})
-
-north_catchment_2011_df = pd.DataFrame({"time": to_1d(north_2011_time),
-                                           "air_temp": to_1d(north_2011_air_temp[:, 0]),
-                                          "ice_temp": to_1d(north_2011_ice_temp[:, 0]),
-                                           "albedo": to_1d(north_2011_albedo[:, 0]),
-                                           "shortwave_down": to_1d(north_2011_swd),
-                                           "shortwave_up": to_1d(north_2011_swu),
-                                           "longwave_down": to_1d(north_2011_lwd),
-                                           "longwave_up": to_1d(north_2011_lwu),
-                                           "sensible_heat_flux": to_1d(north_2011_shf),
-                                           "latent_heat_flux": to_1d(north_2011_lhf),
-                                           "surface_energy_balance": to_1d(north_2011_seb),
-                                           "meltwater_runoff": to_1d(north_2011_mru)})
-
-north_catchment_2012_df = pd.DataFrame({"time": to_1d(north_2012_time),
-                                           "air_temp": to_1d(north_2012_air_temp[:, 0]),
-                                          "ice_temp": to_1d(north_2012_ice_temp[:, 0]),
-                                           "albedo": to_1d(north_2012_albedo[:, 0]),
-                                           "shortwave_down": to_1d(north_2012_swd),
-                                           "shortwave_up": to_1d(north_2012_swu),
-                                           "longwave_down": to_1d(north_2012_lwd),
-                                           "longwave_up": to_1d(north_2012_lwu),
-                                           "sensible_heat_flux": to_1d(north_2012_shf),
-                                           "latent_heat_flux": to_1d(north_2012_lhf),
-                                           "surface_energy_balance": to_1d(north_2012_seb),
-                                           "meltwater_runoff": to_1d(north_2012_mru)})
-
-north_catchment_2013_df = pd.DataFrame({"time": to_1d(north_2013_time),
-                                           "air_temp": to_1d(north_2013_air_temp[:, 0]),
-                                          "ice_temp": to_1d(north_2013_ice_temp[:, 0]),
-                                           "albedo": to_1d(north_2013_albedo[:, 0]),
-                                           "shortwave_down": to_1d(north_2013_swd),
-                                           "shortwave_up": to_1d(north_2013_swu),
-                                           "longwave_down": to_1d(north_2013_lwd),
-                                           "longwave_up": to_1d(north_2013_lwu),
-                                           "sensible_heat_flux": to_1d(north_2013_shf),
-                                           "latent_heat_flux": to_1d(north_2013_lhf),
-                                           "surface_energy_balance": to_1d(north_2013_seb),
-                                           "meltwater_runoff": to_1d(north_2013_mru)})
-
-north_catchment_2014_df = pd.DataFrame({"time": to_1d(north_2014_time),
-                                           "air_temp": to_1d(north_2014_air_temp[:, 0]),
-                                          "ice_temp": to_1d(north_2014_ice_temp[:, 0]),
-                                           "albedo": to_1d(north_2014_albedo[:, 0]),
-                                           "shortwave_down": to_1d(north_2014_swd),
-                                           "shortwave_up": to_1d(north_2014_swu),
-                                           "longwave_down": to_1d(north_2014_lwd),
-                                           "longwave_up": to_1d(north_2014_lwu),
-                                           "sensible_heat_flux": to_1d(north_2014_shf),
-                                           "latent_heat_flux": to_1d(north_2014_lhf),
-                                           "surface_energy_balance": to_1d(north_2014_seb),
-                                           "meltwater_runoff": to_1d(north_2014_mru)})
-
-north_catchment_2015_df = pd.DataFrame({"time": to_1d(north_2015_time),
-                                           "air_temp": to_1d(north_2015_air_temp[:, 0]),
-                                          "ice_temp": to_1d(north_2015_ice_temp[:, 0]),
-                                           "albedo": to_1d(north_2015_albedo[:, 0]),
-                                           "shortwave_down": to_1d(north_2015_swd),
-                                           "shortwave_up": to_1d(north_2015_swu),
-                                           "longwave_down": to_1d(north_2015_lwd),
-                                           "longwave_up": to_1d(north_2015_lwu),
-                                           "sensible_heat_flux": to_1d(north_2015_shf),
-                                           "latent_heat_flux": to_1d(north_2015_lhf),
-                                           "surface_energy_balance": to_1d(north_2015_seb),
-                                           "meltwater_runoff": to_1d(north_2015_mru)})
-
-north_catchment_2016_df = pd.DataFrame({"time": to_1d(north_2016_time),
-                                           "air_temp": to_1d(north_2016_air_temp[:, 0]),
-                                          "ice_temp": to_1d(north_2016_ice_temp[:, 0]),
-                                           "albedo": to_1d(north_2016_albedo[:, 0]),
-                                           "shortwave_down": to_1d(north_2016_swd),
-                                           "shortwave_up": to_1d(north_2016_swu),
-                                           "longwave_down": to_1d(north_2016_lwd),
-                                           "longwave_up": to_1d(north_2016_lwu),
-                                           "sensible_heat_flux": to_1d(north_2016_shf),
-                                           "latent_heat_flux": to_1d(north_2016_lhf),
-                                           "surface_energy_balance": to_1d(north_2016_seb),
-                                           "meltwater_runoff": to_1d(north_2016_mru)})
-
-north_catchment_2017_df = pd.DataFrame({"time": to_1d(north_2017_time),
-                                           "air_temp": to_1d(north_2017_air_temp[:, 0]),
-                                          "ice_temp": to_1d(north_2017_ice_temp[:, 0]),
-                                           "albedo": to_1d(north_2017_albedo[:, 0]),
-                                           "shortwave_down": to_1d(north_2017_swd),
-                                           "shortwave_up": to_1d(north_2017_swu),
-                                           "longwave_down": to_1d(north_2017_lwd),
-                                           "longwave_up": to_1d(north_2017_lwu),
-                                           "sensible_heat_flux": to_1d(north_2017_shf),
-                                           "latent_heat_flux": to_1d(north_2017_lhf),
-                                           "surface_energy_balance": to_1d(north_2017_seb),
-                                           "meltwater_runoff": to_1d(north_2017_mru)})
-
-north_catchment_2018_df = pd.DataFrame({"time": to_1d(north_2018_time),
-                                           "air_temp": to_1d(north_2018_air_temp[:, 0]),
-                                          "ice_temp": to_1d(north_2018_ice_temp[:, 0]),
-                                           "albedo": to_1d(north_2018_albedo[:, 0]),
-                                           "shortwave_down": to_1d(north_2018_swd),
-                                           "shortwave_up": to_1d(north_2018_swu),
-                                           "longwave_down": to_1d(north_2018_lwd),
-                                           "longwave_up": to_1d(north_2018_lwu),
-                                           "sensible_heat_flux": to_1d(north_2018_shf),
-                                           "latent_heat_flux": to_1d(north_2018_lhf),
-                                           "surface_energy_balance": to_1d(north_2018_seb),
-                                           "meltwater_runoff": to_1d(north_2018_mru)})
-
-north_catchment_2019_df = pd.DataFrame({"time": to_1d(north_2019_time),
-                                           "air_temp": to_1d(north_2019_air_temp[:, 0]),
-                                          "ice_temp": to_1d(north_2019_ice_temp[:, 0]),
-                                           "albedo": to_1d(north_2019_albedo[:, 0]),
-                                           "shortwave_down": to_1d(north_2019_swd),
-                                           "shortwave_up": to_1d(north_2019_swu),
-                                           "longwave_down": to_1d(north_2019_lwd),
-                                           "longwave_up": to_1d(north_2019_lwu),
-                                           "sensible_heat_flux": to_1d(north_2019_shf),
-                                           "latent_heat_flux": to_1d(north_2019_lhf),
-                                           "surface_energy_balance": to_1d(north_2019_seb),
-                                           "meltwater_runoff": to_1d(north_2019_mru)})
-
-north_catchment_2020_df = pd.DataFrame({"time": to_1d(north_2020_time),
-                                           "air_temp": to_1d(north_2020_air_temp[:, 0]),
-                                          "ice_temp": to_1d(north_2020_ice_temp[:, 0]),
-                                           "albedo": to_1d(north_2020_albedo[:, 0]),
-                                           "shortwave_down": to_1d(north_2020_swd),
-                                           "shortwave_up": to_1d(north_2020_swu),
-                                           "longwave_down": to_1d(north_2020_lwd),
-                                           "longwave_up": to_1d(north_2020_lwu),
-                                           "sensible_heat_flux": to_1d(north_2020_shf),
-                                           "latent_heat_flux": to_1d(north_2020_lhf),
-                                           "surface_energy_balance": to_1d(north_2020_seb),
-                                           "meltwater_runoff": to_1d(north_2020_mru)})
-
-north_catchment_2021_df = pd.DataFrame({"time": to_1d(north_2021_time),
-                                           "air_temp": to_1d(north_2021_air_temp[:, 0]),
-                                          "ice_temp": to_1d(north_2021_ice_temp[:, 0]),
-                                           "albedo": to_1d(north_2021_albedo[:, 0]),
-                                           "shortwave_down": to_1d(north_2021_swd),
-                                           "shortwave_up": to_1d(north_2021_swu),
-                                           "longwave_down": to_1d(north_2021_lwd),
-                                           "longwave_up": to_1d(north_2021_lwu),
-                                           "sensible_heat_flux": to_1d(north_2021_shf),
-                                           "latent_heat_flux": to_1d(north_2021_lhf),
-                                           "surface_energy_balance": to_1d(north_2021_seb),
-                                           "meltwater_runoff": to_1d(north_2021_mru)})
-
-north_catchment_2022_df = pd.DataFrame({"time": to_1d(north_2022_time),
-                                           "air_temp": to_1d(north_2022_air_temp[:, 0]),
-                                          "ice_temp": to_1d(north_2022_ice_temp[:, 0]),
-                                           "albedo": to_1d(north_2022_albedo[:, 0]),
-                                           "shortwave_down": to_1d(north_2022_swd),
-                                           "shortwave_up": to_1d(north_2022_swu),
-                                           "longwave_down": to_1d(north_2022_lwd),
-                                           "longwave_up": to_1d(north_2022_lwu),
-                                           "sensible_heat_flux": to_1d(north_2022_shf),
-                                           "latent_heat_flux": to_1d(north_2022_lhf),
-                                           "surface_energy_balance": to_1d(north_2022_seb),
-                                           "meltwater_runoff": to_1d(north_2022_mru)})
-
-north_catchment_2023_df = pd.DataFrame({"time": to_1d(north_2023_time),
-                                           "air_temp": to_1d(north_2023_air_temp[:, 0]),
-                                          "ice_temp": to_1d(north_2023_ice_temp[:, 0]),
-                                           "albedo": to_1d(north_2023_albedo[:, 0]),
-                                           "shortwave_down": to_1d(north_2023_swd),
-                                           "shortwave_up": to_1d(north_2023_swu),
-                                           "longwave_down": to_1d(north_2023_lwd),
-                                           "longwave_up": to_1d(north_2023_lwu),
-                                           "sensible_heat_flux": to_1d(north_2023_shf),
-                                           "latent_heat_flux": to_1d(north_2023_lhf),
-                                           "surface_energy_balance": to_1d(north_2023_seb),
-                                           "meltwater_runoff": to_1d(north_2023_mru)})
-
-north_catchment_2024_df = pd.DataFrame({"time": to_1d(north_2024_time),
-                                           "air_temp": to_1d(north_2024_air_temp[:, 0]),
-                                          "ice_temp": to_1d(north_2024_ice_temp[:, 0]),
-                                           "albedo": to_1d(north_2024_albedo[:, 0]),
-                                           "shortwave_down": to_1d(north_2024_swd),
-                                           "shortwave_up": to_1d(north_2024_swu),
-                                           "longwave_down": to_1d(north_2024_lwd),
-                                           "longwave_up": to_1d(north_2024_lwu),
-                                           "sensible_heat_flux": to_1d(north_2024_shf),
-                                           "latent_heat_flux": to_1d(north_2024_lhf),
-                                           "surface_energy_balance": to_1d(north_2024_seb),
-                                           "meltwater_runoff": to_1d(north_2024_mru)})
-
-north_catchment_2019_2020_df = pd.concat([north_catchment_2019_df,
-                                          north_catchment_2020_df],
-                                          ignore_index=True)
-
-north_catchment_2000_2024_df = pd.concat([north_catchment_2000_df,
-                                            north_catchment_2001_df,
-                                            north_catchment_2002_df,
-                                            north_catchment_2003_df,
-                                            north_catchment_2004_df,
-                                            north_catchment_2005_df,
-                                            north_catchment_2006_df,
-                                            north_catchment_2007_df,
-                                            north_catchment_2008_df,
-                                            north_catchment_2009_df,
-                                            north_catchment_2010_df,
-                                            north_catchment_2011_df,
-                                            north_catchment_2012_df,
-                                            north_catchment_2013_df,
-                                            north_catchment_2014_df,
-                                            north_catchment_2015_df,
-                                            north_catchment_2016_df,
-                                            north_catchment_2017_df,
-                                            north_catchment_2018_df,
-                                            north_catchment_2019_df,
-                                            north_catchment_2020_df,
-                                            north_catchment_2021_df,
-                                            north_catchment_2022_df,
-                                            north_catchment_2023_df,
-                                            north_catchment_2024_df],
-                                           ignore_index=True)
-
 # Define output directory for Rio Behar
 output_dir_rb = '/Users/mlm211/Documents/DeepMelt/catchment-scale/Rio_Behar_catchment_variables'
 # Output directory on personal computer:
@@ -4288,14 +3225,6 @@ output_dir_minturn = '/Users/mlm211/Documents/DeepMelt/catchment-scale/Minturn_c
 
 # Create the directory if it doesn't exist
 os.makedirs(output_dir_minturn, exist_ok=True)
-
-# Define output directory for North
-output_dir_north = '/Users/mlm211/Documents/DeepMelt/catchment-scale/North_catchment_variables'
-# Output directory on personal computer:
-# output_dir_north = '/Users/mayam/OneDrive/Documents/Duke University/DeepMelt/catchment-scale/North_catchment_variables'
-
-# Create the directory if it doesn't exist
-os.makedirs(output_dir_north, exist_ok=True)
 
 # File name (with path) to save Rio Behar variables for each year
 rb_catchment_file_name_2000 = os.path.join(
@@ -4463,64 +3392,6 @@ minturn_catchment_file_name_2019_2020 = os.path.join(
 minturn_catchment_file_name_2000_2024 = os.path.join(
     output_dir_minturn, "minturn_catchment_2000_2024_vars.csv")
 
-
-# File name (with path) to save North variables for each year
-north_catchment_file_name_2000 = os.path.join(
-    output_dir_north, "north_catchment_2000_vars.csv")
-north_catchment_file_name_2001 = os.path.join(
-    output_dir_north, "north_catchment_2001_vars.csv")
-north_catchment_file_name_2002 = os.path.join(
-    output_dir_north, "north_catchment_2002_vars.csv")
-north_catchment_file_name_2003 = os.path.join(
-    output_dir_north, "north_catchment_2003_vars.csv")
-north_catchment_file_name_2004 = os.path.join(
-    output_dir_north, "north_catchment_2004_vars.csv")
-north_catchment_file_name_2005 = os.path.join(
-    output_dir_north, "north_catchment_2005_vars.csv")
-north_catchment_file_name_2006 = os.path.join(
-    output_dir_north, "north_catchment_2006_vars.csv")
-north_catchment_file_name_2007 = os.path.join(
-    output_dir_north, "north_catchment_2007_vars.csv")
-north_catchment_file_name_2008 = os.path.join(
-    output_dir_north, "north_catchment_2008_vars.csv")
-north_catchment_file_name_2009 = os.path.join(
-    output_dir_north, "north_catchment_2009_vars.csv")
-north_catchment_file_name_2010 = os.path.join(
-    output_dir_north, "north_catchment_2010_vars.csv")
-north_catchment_file_name_2011 = os.path.join(
-    output_dir_north, "north_catchment_2011_vars.csv")
-north_catchment_file_name_2012 = os.path.join(
-    output_dir_north, "north_catchment_2012_vars.csv")
-north_catchment_file_name_2013 = os.path.join(
-    output_dir_north, "north_catchment_2013_vars.csv")
-north_catchment_file_name_2014 = os.path.join(
-    output_dir_north, "north_catchment_2014_vars.csv")
-north_catchment_file_name_2015 = os.path.join(
-    output_dir_north, "north_catchment_2015_vars.csv")
-north_catchment_file_name_2016 = os.path.join(
-    output_dir_north, "north_catchment_2016_vars.csv")
-north_catchment_file_name_2017 = os.path.join(
-    output_dir_north, "north_catchment_2017_vars.csv")
-north_catchment_file_name_2018 = os.path.join(
-    output_dir_north, "north_catchment_2018_vars.csv")
-north_catchment_file_name_2019 = os.path.join(
-    output_dir_north, "north_catchment_2019_vars.csv")
-north_catchment_file_name_2020 = os.path.join(
-    output_dir_north, "north_catchment_2020_vars.csv")
-north_catchment_file_name_2021 = os.path.join(
-    output_dir_north, "north_catchment_2021_vars.csv")
-north_catchment_file_name_2022 = os.path.join(
-    output_dir_north, "north_catchment_2022_vars.csv")
-north_catchment_file_name_2023 = os.path.join(
-    output_dir_north, "north_catchment_2023_vars.csv")
-north_catchment_file_name_2024 = os.path.join(
-    output_dir_north, "north_catchment_2024_vars.csv")
-north_catchment_file_name_2019_2020 = os.path.join(
-    output_dir_north, "north_catchment_2019_2020_vars.csv")
-north_catchment_file_name_2000_2024 = os.path.join(
-    output_dir_north, "north_catchment_2000_2024_vars.csv")
-
-
 # Delete old Rio Behar csv files if they already exist
 if os.path.exists(rb_catchment_file_name_2000):
     os.remove(rb_catchment_file_name_2000)
@@ -4686,63 +3557,6 @@ if os.path.exists(minturn_catchment_file_name_2019_2020):
     os.remove(minturn_catchment_file_name_2019_2020)
 if os.path.exists(minturn_catchment_file_name_2000_2024):
     os.remove(minturn_catchment_file_name_2000_2024)
-    
-# Delete old North csv files if they already exist
-if os.path.exists(north_catchment_file_name_2000):
-    os.remove(north_catchment_file_name_2000)
-if os.path.exists(north_catchment_file_name_2001):
-    os.remove(north_catchment_file_name_2001)
-if os.path.exists(north_catchment_file_name_2002):
-    os.remove(north_catchment_file_name_2002)
-if os.path.exists(north_catchment_file_name_2003):
-    os.remove(north_catchment_file_name_2003)
-if os.path.exists(north_catchment_file_name_2004):
-    os.remove(north_catchment_file_name_2004)
-if os.path.exists(north_catchment_file_name_2005):
-    os.remove(north_catchment_file_name_2005)
-if os.path.exists(north_catchment_file_name_2006):
-    os.remove(north_catchment_file_name_2006)
-if os.path.exists(north_catchment_file_name_2007):
-    os.remove(north_catchment_file_name_2007)
-if os.path.exists(north_catchment_file_name_2008):
-    os.remove(north_catchment_file_name_2008)
-if os.path.exists(north_catchment_file_name_2009):
-    os.remove(north_catchment_file_name_2009)
-if os.path.exists(north_catchment_file_name_2010):
-    os.remove(north_catchment_file_name_2010)
-if os.path.exists(north_catchment_file_name_2011):
-    os.remove(north_catchment_file_name_2011)
-if os.path.exists(north_catchment_file_name_2012):
-    os.remove(north_catchment_file_name_2012)
-if os.path.exists(north_catchment_file_name_2013):
-    os.remove(north_catchment_file_name_2013)
-if os.path.exists(north_catchment_file_name_2014):
-    os.remove(north_catchment_file_name_2014)
-if os.path.exists(north_catchment_file_name_2015):
-    os.remove(north_catchment_file_name_2015)
-if os.path.exists(north_catchment_file_name_2016):
-    os.remove(north_catchment_file_name_2016)
-if os.path.exists(north_catchment_file_name_2017):
-    os.remove(north_catchment_file_name_2017)
-if os.path.exists(north_catchment_file_name_2018):
-    os.remove(north_catchment_file_name_2018)
-if os.path.exists(north_catchment_file_name_2019):
-    os.remove(north_catchment_file_name_2019)
-if os.path.exists(north_catchment_file_name_2020):
-    os.remove(north_catchment_file_name_2020)
-if os.path.exists(north_catchment_file_name_2021):
-    os.remove(north_catchment_file_name_2021)
-if os.path.exists(north_catchment_file_name_2022):
-    os.remove(north_catchment_file_name_2022)
-if os.path.exists(north_catchment_file_name_2023):
-    os.remove(north_catchment_file_name_2023)
-if os.path.exists(north_catchment_file_name_2024):
-    os.remove(north_catchment_file_name_2024)
-if os.path.exists(north_catchment_file_name_2019_2020):
-    os.remove(north_catchment_file_name_2019_2020)
-if os.path.exists(north_catchment_file_name_2000_2024):
-    os.remove(north_catchment_file_name_2000_2024)
-
 
 # Save Rio Behar data to csv
 rb_catchment_2000_df.to_csv(rb_catchment_file_name_2000, index=False)
@@ -4830,33 +3644,3 @@ minturn_catchment_2023_df.to_csv(minturn_catchment_file_name_2023, index=False)
 minturn_catchment_2024_df.to_csv(minturn_catchment_file_name_2024, index=False)
 minturn_catchment_2019_2020_df.to_csv(minturn_catchment_file_name_2019_2020, index=False)
 minturn_catchment_2000_2024_df.to_csv(minturn_catchment_file_name_2000_2024, index=False)
-
-
-# Save North data to csv
-north_catchment_2000_df.to_csv(north_catchment_file_name_2000, index=False)
-north_catchment_2001_df.to_csv(north_catchment_file_name_2001, index=False)
-north_catchment_2002_df.to_csv(north_catchment_file_name_2002, index=False)
-north_catchment_2003_df.to_csv(north_catchment_file_name_2003, index=False)
-north_catchment_2004_df.to_csv(north_catchment_file_name_2004, index=False)
-north_catchment_2005_df.to_csv(north_catchment_file_name_2005, index=False)
-north_catchment_2006_df.to_csv(north_catchment_file_name_2006, index=False)
-north_catchment_2007_df.to_csv(north_catchment_file_name_2007, index=False)
-north_catchment_2008_df.to_csv(north_catchment_file_name_2008, index=False)
-north_catchment_2009_df.to_csv(north_catchment_file_name_2009, index=False)
-north_catchment_2010_df.to_csv(north_catchment_file_name_2010, index=False)
-north_catchment_2011_df.to_csv(north_catchment_file_name_2011, index=False)
-north_catchment_2012_df.to_csv(north_catchment_file_name_2012, index=False)
-north_catchment_2013_df.to_csv(north_catchment_file_name_2013, index=False)
-north_catchment_2014_df.to_csv(north_catchment_file_name_2014, index=False)
-north_catchment_2015_df.to_csv(north_catchment_file_name_2015, index=False)
-north_catchment_2016_df.to_csv(north_catchment_file_name_2016, index=False)
-north_catchment_2017_df.to_csv(north_catchment_file_name_2017, index=False)
-north_catchment_2018_df.to_csv(north_catchment_file_name_2018, index=False)
-north_catchment_2019_df.to_csv(north_catchment_file_name_2019, index=False)
-north_catchment_2020_df.to_csv(north_catchment_file_name_2020, index=False)
-north_catchment_2021_df.to_csv(north_catchment_file_name_2021, index=False)
-north_catchment_2022_df.to_csv(north_catchment_file_name_2022, index=False)
-north_catchment_2023_df.to_csv(north_catchment_file_name_2023, index=False)
-north_catchment_2024_df.to_csv(north_catchment_file_name_2024, index=False)
-north_catchment_2019_2020_df.to_csv(north_catchment_file_name_2019_2020, index=False)
-north_catchment_2000_2024_df.to_csv(north_catchment_file_name_2000_2024, index=False)
