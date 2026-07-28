@@ -37,5 +37,4 @@ The data required to reproduce the findings of this study for every step beyond 
 
 ## Acknowledgements
 
-We thank Matthew Cooper for providing the Rio Behar catchment delineation and Xavier Fettweis for making the MARv3.14 outputs available.
-TODO: This research was supported by ______
+This research was supported by NASA award #80NSSC25K7364 managed by Dr. Thorsten markus. We thank Matthew Cooper for providing the Rio Behar catchment delineation and Xavier Fettweis for making the MARv3.14 outputs available.
