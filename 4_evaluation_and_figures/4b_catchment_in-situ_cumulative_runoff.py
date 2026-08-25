@@ -20,9 +20,10 @@ import seaborn as sns
 from matplotlib.colors import SymLogNorm
 import random
 import matplotlib.dates as mdates
+from datetime import datetime
 
-#os.chdir('/Users/mlm211/Documents/DeepMelt/catchment-scale')
-os.chdir('/Users/maya/Documents/Duke University/DeepMelt/catchment-scale')
+os.chdir('/Users/mlm211/Documents/DeepMelt/catchment-scale')
+#os.chdir('/Users/maya/Documents/Duke University/DeepMelt/catchment-scale')
 
 """
 List of in-situ data to be predicted:
@@ -130,29 +131,30 @@ def load_and_prepare_mar_data(path):
     })
     return df
 
-rb_2015_mar = load_and_prepare_mar_data('Rio_Behar_catchment_variables/rb_catchment_2015_vars.csv')
-rb_2016_mar = load_and_prepare_mar_data('Rio_Behar_catchment_variables/rb_catchment_2016_vars.csv')
+rb_2015_mar = load_and_prepare_mar_data('Rio_Behar_catchment_variables_2000_2021/rb_catchment_2015_vars.csv')
+rb_2016_mar = load_and_prepare_mar_data('Rio_Behar_catchment_variables_2000_2021/rb_catchment_2016_vars.csv')
 
-ak4_2008_mar = load_and_prepare_mar_data("AK4_catchment_variables/ak4_catchment_2008_vars.csv")
-ak4_2009_mar = load_and_prepare_mar_data("AK4_catchment_variables/ak4_catchment_2009_vars.csv")
-ak4_2010_mar = load_and_prepare_mar_data("AK4_catchment_variables/ak4_catchment_2010_vars.csv")
-ak4_2011_mar = load_and_prepare_mar_data("AK4_catchment_variables/ak4_catchment_2011_vars.csv")
-ak4_2012_mar = load_and_prepare_mar_data("AK4_catchment_variables/ak4_catchment_2012_vars.csv")
-ak4_2013_mar = load_and_prepare_mar_data("AK4_catchment_variables/ak4_catchment_2013_vars.csv")
-ak4_2014_mar = load_and_prepare_mar_data("AK4_catchment_variables/ak4_catchment_2014_vars.csv")
-ak4_2015_mar = load_and_prepare_mar_data("AK4_catchment_variables/ak4_catchment_2015_vars.csv")
-ak4_2016_mar = load_and_prepare_mar_data("AK4_catchment_variables/ak4_catchment_2016_vars.csv")
+ak4_2008_mar = load_and_prepare_mar_data("AK4_catchment_variables_2008_2016/ak4_catchment_2008_vars.csv")
+ak4_2009_mar = load_and_prepare_mar_data("AK4_catchment_variables_2008_2016/ak4_catchment_2009_vars.csv")
+ak4_2010_mar = load_and_prepare_mar_data("AK4_catchment_variables_2008_2016/ak4_catchment_2010_vars.csv")
+ak4_2011_mar = load_and_prepare_mar_data("AK4_catchment_variables_2008_2016/ak4_catchment_2011_vars.csv")
+ak4_2012_mar = load_and_prepare_mar_data("AK4_catchment_variables_2008_2016/ak4_catchment_2012_vars.csv")
+ak4_2013_mar = load_and_prepare_mar_data("AK4_catchment_variables_2008_2016/ak4_catchment_2013_vars.csv")
+ak4_2014_mar = load_and_prepare_mar_data("AK4_catchment_variables_2008_2016/ak4_catchment_2014_vars.csv")
+ak4_2015_mar = load_and_prepare_mar_data("AK4_catchment_variables_2008_2016/ak4_catchment_2015_vars.csv")
+ak4_2016_mar = load_and_prepare_mar_data("AK4_catchment_variables_2008_2016/ak4_catchment_2016_vars.csv")
 
-minturn_2019_mar = load_and_prepare_mar_data('Minturn_catchment_variables/minturn_catchment_2019_vars.csv')
-minturn_2020_mar = load_and_prepare_mar_data("Minturn_catchment_variables/minturn_catchment_2020_vars.csv")
-minturn_2021_mar = load_and_prepare_mar_data("Minturn_catchment_variables/minturn_catchment_2021_vars.csv")
-minturn_2022_mar = load_and_prepare_mar_data("Minturn_catchment_variables/minturn_catchment_2022_vars.csv")
+minturn_2019_mar = load_and_prepare_mar_data('Minturn_catchment_variables_2019_2020/minturn_catchment_2019_vars.csv')
+minturn_2020_mar = load_and_prepare_mar_data("Minturn_catchment_variables_2019_2020/minturn_catchment_2020_vars.csv")
+minturn_2021_mar = load_and_prepare_mar_data("Minturn_catchment_variables_2019_2020/minturn_catchment_2021_vars.csv")
+minturn_2022_mar = load_and_prepare_mar_data("Minturn_catchment_variables_2019_2020/minturn_catchment_2022_vars.csv")
 
 # Normalize MAR dates
 for df in [
     rb_2015_mar, rb_2016_mar,
     ak4_2008_mar, ak4_2009_mar, ak4_2010_mar, ak4_2011_mar, ak4_2012_mar, ak4_2013_mar, ak4_2014_mar, ak4_2015_mar, ak4_2016_mar,
     minturn_2019_mar, minturn_2020_mar, minturn_2021_mar, minturn_2022_mar
+    
 ]:
     df['date'] = df['time'].dt.normalize()
 
@@ -177,16 +179,16 @@ minturn_2022_mar = minturn_2022_mar[minturn_2022_mar['date'].isin(minturn_in_sit
 
 # Load transfer learning models
 models = {
-    "2015-2016 Rio Behar": tf.keras.models.load_model('catchment_TL_models/mlp_catchment_tl_rio_behar_mar.keras'),
-    "2008-2016 AK4": tf.keras.models.load_model('catchment_TL_models/mlp_catchment_tl_ak4_mar.keras'),
-    "2019-2022 Minturn": tf.keras.models.load_model('catchment_TL_models/mlp_catchment_tl_minturn_mar.keras')
+    "2015-2016 Rio Behar": tf.keras.models.load_model('catchment_transfer_learned_MLPs/mlp_catchment_random_tl_rio_behar_mar.keras'),
+    "2008-2016 AK4": tf.keras.models.load_model('catchment_transfer_learned_MLPs/mlp_catchment_random_tl_ak4_mar.keras'),
+    "2019-2022 Minturn": tf.keras.models.load_model('catchment_transfer_learned_MLPs/mlp_catchment_random_tl_minturn_mar.keras')
 }
 
 # Load MAR emulators
 mar_emulators = {
-    "Rio Behar": tf.keras.models.load_model('catchment_MAR_emulators/rb_mar_mlp.keras'),
-    "AK4": tf.keras.models.load_model('catchment_MAR_emulators/AK4_mar_mlp.keras'),
-    "Minturn": tf.keras.models.load_model('catchment_MAR_emulators/minturn_mar_mlp.keras')
+    "Rio Behar": tf.keras.models.load_model('trained_catchment_MLPs/rb_mar_mlp.keras'),
+    "AK4": tf.keras.models.load_model('trained_catchment_MLPs/AK4_mar_mlp.keras'),
+    "Minturn": tf.keras.models.load_model('trained_catchment_MLPs/minturn_mar_mlp.keras')
 }
 
 # Standardize feature names
@@ -210,16 +212,16 @@ for name in [
 # MAR emulator scalers
 mar_emulator_scalers = {
     "Rio Behar": (
-        joblib.load("catchment_MAR_emulators/rb_mar_xscaler.pkl"),
-        joblib.load("catchment_MAR_emulators/rb_mar_yscaler.pkl")
+        joblib.load("trained_catchment_MLPs/rb_mar_xscaler.pkl"),
+        joblib.load("trained_catchment_MLPs/rb_mar_yscaler.pkl")
     ),
     "AK4": (
-        joblib.load("catchment_MAR_emulators/ak4_mar_xscaler.pkl"),
-        joblib.load("catchment_MAR_emulators/ak4_mar_yscaler.pkl")
+        joblib.load("trained_catchment_MLPs/ak4_mar_xscaler.pkl"),
+        joblib.load("trained_catchment_MLPs/ak4_mar_yscaler.pkl")
     ),
     "Minturn": (
-        joblib.load("catchment_MAR_emulators/minturn_mar_xscaler.pkl"),
-        joblib.load("catchment_MAR_emulators/minturn_mar_yscaler.pkl")
+        joblib.load("trained_catchment_MLPs/minturn_mar_xscaler.pkl"),
+        joblib.load("trained_catchment_MLPs/minturn_mar_yscaler.pkl")
     ),
 }
 
@@ -426,6 +428,10 @@ def evaluate_catchment(in_situ_df, mar_df, eval_label):
             tl_y_true_plot = y_true_tl.ravel()
 
     dates = eval_df["date"]
+    
+    xlim = { "2012 AK4" : ("2012-05-20", "2012-10-01"),
+            "2020 Minturn": ("2020-06-20", "2020-10-01")
+        }
 
     plt.figure(figsize=(10, 6))
 
@@ -437,6 +443,11 @@ def evaluate_catchment(in_situ_df, mar_df, eval_label):
     plt.fill_between(tl_dates, np.cumsum(tl_low_plot), np.cumsum(tl_high_plot), color="darkorange", alpha=0.25)
 
     plt.xlabel("Date")
+    if eval_label in xlim:
+        plt.xlim(
+            pd.to_datetime(xlim[eval_label][0]),
+            pd.to_datetime(xlim[eval_label][1])
+            )
     plt.ylabel("Cumulative Runoff (mmWE)")
     plt.legend()
     plt.grid(True, which='both', axis='both', linestyle='--', linewidth=0.7, color='grey', alpha=0.6)
@@ -463,8 +474,8 @@ evaluate_catchment(minturn_in_situ_2021, minturn_2021_mar, "2021 Minturn")
 evaluate_catchment(minturn_in_situ_2022, minturn_2022_mar, "2022 Minturn")
 
 # Save cumulative evaluation results
-#output_dir = '/Users/mlm211/Documents/DeepMelt/catchment-scale'
-output_dir = '/Users/maya/Documents/Duke University/DeepMelt/catchment-scale'
+output_dir = '/Users/mlm211/Documents/DeepMelt/catchment-scale'
+#output_dir = '/Users/maya/Documents/Duke University/DeepMelt/catchment-scale'
 results_file_name = os.path.join(output_dir, 'catchment_in-situ_cumulative_evaluation_results.csv')
 
 if os.path.exists(results_file_name):
@@ -521,7 +532,7 @@ print(f"\nMean MAR bias: {mean_mar_bias:.1f}%")
 print(f"Mean TL bias: {mean_tl_bias:.1f}%")
 
 # Load MAR emulators and TL model MSE for each catchment and year predicted
-mar_emulator_tl_error_rate = pd.read_csv('./catchment_emulator_TL_error_rate.csv')
+mar_emulator_tl_error_rate = pd.read_csv('./catchment_base_TL_error_rate.csv')
 
 # Convert to long format
 mar_emulator_tl_error_rate_long = mar_emulator_tl_error_rate.melt(
@@ -546,12 +557,12 @@ ax = sns.boxplot(data=mar_emulator_tl_error_rate_long, x='catchment', y='error r
             hue='model', palette=palette, width=0.5, showfliers=False)
 for patch in ax.patches:
     patch.set_alpha(0.85)
-plt.xlabel('Catchment', fontsize=16)
 plt.yscale('log')
 plt.ylabel('Error Rate (log scale)', fontsize=16)
+plt.xlabel('')
 plt.xticks(fontsize=16)
 plt.yticks(fontsize=16)
-plt.legend(title='Model', fontsize=13, title_fontsize=14, loc='upper left')
+plt.legend(fontsize=13, title_fontsize=14, loc='upper left')
 plt.grid(True, which='major', axis='both', linestyle='--', linewidth=0.7, color='grey', alpha=0.6)
 plt.tight_layout()
 plt.show()
@@ -569,6 +580,7 @@ error_rate_matrix = error_rate_avg.pivot(index="TL Model", columns="Catchment", 
 
 order = ["Rio Behar", "AK4", "Minturn"]
 error_rate_matrix = error_rate_matrix.reindex(index=order[::-1], columns=order)
+error_rate_matrix = error_rate_matrix * 100
 
 plt.figure(figsize=(12, 8))
 
@@ -580,7 +592,7 @@ ax = sns.heatmap(
     linewidths=0.5,
     linecolor="white",
     annot=True,
-    fmt=".1f",
+    fmt=".0f",
     annot_kws={"size": 16},
     cbar_kws={"label": "Normalized MSE"},
     alpha=0.8
@@ -588,7 +600,7 @@ ax = sns.heatmap(
 
 cbar = ax.collections[0].colorbar
 cbar.ax.tick_params(labelsize=16)
-cbar.set_label("Error Rate", fontsize=16)
+cbar.set_label("Error Rate (%)", fontsize=16)
 
 plt.xlabel("Prediction Catchment", fontsize=16)
 plt.ylabel("Transfer Learning Model", fontsize=16)
