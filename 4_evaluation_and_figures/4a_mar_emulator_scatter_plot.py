@@ -12,8 +12,7 @@ import numpy as np
 
 def regression_p_value(x, y):
     """
-    Calculate an approximate two-sided p-value for the slope of a
-    simple linear regression without using SciPy.
+    Calculate an approximate two-sided p-value.
     """
     n = len(x)
 
