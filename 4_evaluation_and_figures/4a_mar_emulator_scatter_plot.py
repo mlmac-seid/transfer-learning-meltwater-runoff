@@ -9,47 +9,97 @@ from sklearn.metrics import r2_score
 import matplotlib.pyplot as plt
 import numpy as np
 
+
+def regression_p_value(x, y):
+    """
+    Calculate an approximate two-sided p-value for the slope of a
+    simple linear regression without using SciPy.
+    """
+    n = len(x)
+
+    if n < 3:
+        return np.nan
+
+    r = np.corrcoef(x, y)[0, 1]
+
+    # Handle a perfect correlation to avoid division by zero
+    if np.isclose(np.abs(r), 1):
+        return 0.0
+
+    t_stat = r * np.sqrt((n - 2) / (1 - r**2))
+
+    # Two-sided p-value using the normal-distribution approximation
+    p_value = float(
+        tf.math.erfc(np.abs(t_stat) / np.sqrt(2)).numpy()
+    )
+
+    return p_value
+
+
 os.chdir('/Users/mlm211/Documents/DeepMelt/catchment-scale')
-#os.chdir('/Users/maya/Documents/Duke University/DeepMelt/catchment-scale')
+# os.chdir('/Users/maya/Documents/Duke University/DeepMelt/catchment-scale')
+
 
 # Load MAR data
-rb_mar = pd.read_csv('./Rio_Behar_catchment_variables/rb_catchment_2000_2024_vars.csv')
-ak4_mar = pd.read_csv('./AK4_catchment_variables/ak4_catchment_2000_2024_vars.csv')
-minturn_mar = pd.read_csv('./Minturn_catchment_variables/minturn_catchment_2000_2024_vars.csv')
+rb_mar = pd.read_csv(
+    './Rio_Behar_catchment_variables_2000_2021/rb_catchment_2000_2024_vars.csv'
+)
+ak4_mar = pd.read_csv(
+    './AK4_catchment_variables_2008_2016/ak4_catchment_2000_2024_vars.csv'
+)
+minturn_mar = pd.read_csv(
+    './Minturn_catchment_variables_2019_2020/minturn_catchment_2000_2024_vars.csv'
+)
 
-# Load models
-rb_model = tf.keras.models.load_model('catchment_MAR_emulators/rb_mar_mlp.keras')
-ak4_model = tf.keras.models.load_model('catchment_MAR_emulators/ak4_mar_mlp.keras')
-minturn_model = tf.keras.models.load_model('catchment_MAR_emulators/minturn_mar_mlp.keras')
+# Load trained MAR emulator models
+rb_model = tf.keras.models.load_model(
+    'trained_catchment_MLPs/rb_mar_mlp.keras'
+)
+ak4_model = tf.keras.models.load_model(
+    'trained_catchment_MLPs/ak4_mar_mlp.keras'
+)
+minturn_model = tf.keras.models.load_model(
+    'trained_catchment_MLPs/minturn_mar_mlp.keras'
+)
 
 
 # Catchment configuration
 catchments = [
-    ("Rio Behar", rb_mar, rb_model,
-     "catchment_MAR_emulators/rb_mar_xscaler.pkl",
-     "catchment_MAR_emulators/rb_mar_yscaler.pkl"),
-
-    ("AK4", ak4_mar, ak4_model,
-     "catchment_MAR_emulators/ak4_mar_xscaler.pkl",
-     "catchment_MAR_emulators/ak4_mar_yscaler.pkl"),
-
-    ("Minturn", minturn_mar, minturn_model,
-     "catchment_MAR_emulators/minturn_mar_xscaler.pkl",
-     "catchment_MAR_emulators/minturn_mar_yscaler.pkl")
+    (
+        "Rio Behar",
+        rb_mar,
+        rb_model,
+        "trained_catchment_MLPs/rb_mar_xscaler.pkl",
+        "trained_catchment_MLPs/rb_mar_yscaler.pkl"
+    ),
+    (
+        "AK4",
+        ak4_mar,
+        ak4_model,
+        "trained_catchment_MLPs/ak4_mar_xscaler.pkl",
+        "trained_catchment_MLPs/ak4_mar_yscaler.pkl"
+    ),
+    (
+        "Minturn",
+        minturn_mar,
+        minturn_model,
+        "trained_catchment_MLPs/minturn_mar_xscaler.pkl",
+        "trained_catchment_MLPs/minturn_mar_yscaler.pkl"
+    )
 ]
 
 predictors = ['air_temp', 'ice_temp', 'albedo', 'shortwave_down']
 
-fig, axes = plt.subplots(2, 2, figsize=(12,14))
+# Scatterplots: MAR runoff versus emulator runoff
+fig, axes = plt.subplots(1, 3, figsize=(20, 9))
 axes = axes.flatten()
 
 for i, (name, df, model, xscaler_path, yscaler_path) in enumerate(catchments):
 
     x_scaler = joblib.load(xscaler_path)
     y_scaler = joblib.load(yscaler_path)
-    
+
     X = df[predictors]
-        
     X_scaled = x_scaler.transform(X)
 
     y_true = df["meltwater_runoff"].values
@@ -57,7 +107,10 @@ for i, (name, df, model, xscaler_path, yscaler_path) in enumerate(catchments):
     y_pred_scaled = model.predict(X_scaled, verbose=0)
     y_pred = y_scaler.inverse_transform(y_pred_scaled).flatten()
 
+    # Performance metrics
     r2 = r2_score(y_true, y_pred)
+    rmse = np.sqrt(np.mean((y_true - y_pred) ** 2))
+    p_value = regression_p_value(y_true, y_pred)
 
     ax = axes[i]
 
@@ -69,15 +122,23 @@ for i, (name, df, model, xscaler_path, yscaler_path) in enumerate(catchments):
     y_line = m * x_line + b
     ax.plot(x_line, y_line, color='dimgrey', linewidth=2)
 
+    # Format p-value for annotation
+    if p_value < 0.001:
+        p_text = "p < 0.001"
+    else:
+        p_text = f"p = {p_value:.3f}"
+
     # Prevent negative axes
     ax.set_xlim(left=0)
     ax.set_ylim(bottom=0)
 
+    # Performance annotation
     ax.text(
-        0.05, 0.95,
-        f"R² = {r2:.2f}",
+        0.05,
+        0.95,
+        f"R² = {r2:.2f}\nRMSE = {rmse:.2f} mmWE\n{p_text}",
         transform=ax.transAxes,
-        fontsize=16,
+        fontsize=18,
         verticalalignment='top',
         bbox=dict(
             boxstyle='round',
@@ -87,23 +148,17 @@ for i, (name, df, model, xscaler_path, yscaler_path) in enumerate(catchments):
         )
     )
 
-    ax.set_title(name, fontsize=18)
+    ax.set_title(name, fontsize=22)
+    if i == 0:
+        ax.set_xlabel("Meltwater runoff from MAR (mmWE)", fontsize=20)
 
-    # Remove x-axis labels for panels a and b
-    if i not in [0, 1]:
-        ax.set_xlabel(
-            "Meltwater runoff from MAR (mmWE)",
-            fontsize=16
-        )
-
-    # Remove y-axis labels for panels b and d
-    if i not in [1, 3]:
+    if i == 0:
         ax.set_ylabel(
             "Meltwater runoff from MAR Emulator (mmWE)",
-            fontsize=16
+            fontsize=20
         )
 
-    ax.tick_params(axis='both', labelsize=14)
+    ax.tick_params(axis='both', labelsize=20)
 
     ax.grid(
         True,
@@ -118,13 +173,13 @@ for i, (name, df, model, xscaler_path, yscaler_path) in enumerate(catchments):
 plt.tight_layout()
 plt.show()
 
+# Daily MAR versus emulator runoff plots by year
 for name, df, model, xscaler_path, yscaler_path in catchments:
 
     x_scaler = joblib.load(xscaler_path)
     y_scaler = joblib.load(yscaler_path)
-    
-    X = df[predictors]
 
+    X = df[predictors]
     X_scaled = x_scaler.transform(X)
 
     y_true = df["meltwater_runoff"].values
@@ -146,11 +201,13 @@ for name, df, model, xscaler_path, yscaler_path in catchments:
             "Please add the correct datetime column name."
         )
 
+    plot_df = plot_df.sort_values("datetime")
     plot_df["year"] = plot_df["datetime"].dt.year
     years = sorted(plot_df["year"].unique())
 
     fig, axes = plt.subplots(
-        len(years), 1,
+        len(years),
+        1,
         figsize=(14, 3.2 * len(years)),
         sharex=False
     )
@@ -159,6 +216,7 @@ for name, df, model, xscaler_path, yscaler_path in catchments:
         axes = [axes]
 
     for ax, year in zip(axes, years):
+
         yearly = plot_df[plot_df["year"] == year]
 
         ax.plot(
@@ -192,17 +250,14 @@ for name, df, model, xscaler_path, yscaler_path in catchments:
 
     plt.tight_layout()
     plt.show()
-    
-    
 
-
+# Cumulative melt-season runoff plots by year
 for name, df, model, xscaler_path, yscaler_path in catchments:
 
     x_scaler = joblib.load(xscaler_path)
     y_scaler = joblib.load(yscaler_path)
-    
-    X = df[predictors]
 
+    X = df[predictors]
     X_scaled = x_scaler.transform(X)
 
     y_true = df["meltwater_runoff"].values
@@ -223,18 +278,16 @@ for name, df, model, xscaler_path, yscaler_path in catchments:
 
     plot_df = plot_df.sort_values("datetime")
 
-    # --- Define melt season ---
-    # Example: melt season = year of summer (May–Sept)
+    # Melt season: May through September
     plot_df["year"] = plot_df["datetime"].dt.year
     plot_df["month"] = plot_df["datetime"].dt.month
-
-    # Keep only melt season months (adjust if needed)
     melt_df = plot_df[plot_df["month"].between(5, 9)].copy()
 
     years = sorted(melt_df["year"].unique())
 
     fig, axes = plt.subplots(
-        len(years), 1,
+        len(years),
+        1,
         figsize=(14, 3.2 * len(years)),
         sharex=False
     )
@@ -243,9 +296,9 @@ for name, df, model, xscaler_path, yscaler_path in catchments:
         axes = [axes]
 
     for ax, year in zip(axes, years):
+
         yearly = melt_df[melt_df["year"] == year].copy()
 
-        # --- CUMULATIVE SUM ---
         yearly["MAR_cum"] = np.cumsum(yearly["MAR"])
         yearly["Emulator_cum"] = np.cumsum(yearly["Emulator"])
 
