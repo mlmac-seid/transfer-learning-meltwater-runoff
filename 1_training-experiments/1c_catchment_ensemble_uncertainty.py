@@ -5,7 +5,7 @@ Created on Tue Mar 17 12:17:15 2026
 
 @author: mlm211
 
-Calculate ensemble mean MSE and uncertainties for catchment-scale training experiments.
+Calculate ensemble mean MSE and uncertainties for catchment-scale training size and predictors experiments.
 """
 
 import os
@@ -18,13 +18,13 @@ os.chdir('/Users/mlm211/Documents/DeepMelt/catchment-scale')
 # Working directory on personal computer:
 # os.chdir('/Users/maya/Documents/Duke University/DeepMelt/catchment-scale')
 
-# Load in model run logs for catchment-scale training experiments
+# Load in model run logs for catchment-scale training size experiments
 rb_log = pd.read_csv(
-    './catchment_training_experiment_logs/catchment_training_experiment_log_rio_behar.csv')
+    './catchment_training_size_experiment_logs/catchment_training_size_experiment_random_log_rio_behar.csv')
 minturn_log = pd.read_csv(
-    './catchment_training_experiment_logs/catchment_training_experiment_log_minturn.csv')
+    './catchment_training_size_experiment_logs/catchment_training_size_experiment_random_log_minturn.csv')
 ak4_log = pd.read_csv(
-    './catchment_training_experiment_logs/catchment_training_experiment_log_ak4.csv')
+    './catchment_training_size_experiment_logs/catchment_training_size_experiment_random_log_ak4.csv')
 
 
 # Calculate ensemble mean MSE and the standard error of the mean MSE
@@ -177,23 +177,23 @@ all_bic['BIC_relative'] = all_bic.apply(
 
 # Desired predictor order from left to right
 predictor_order = [
-    'x_t2m',
-    'x_t2m_ts',
-    'x_t2m_swd',
-    'x_t2m_ts_al2',
-    'x_t2m_al2',
-    'x_t2m_ts_al2_swd'
+    'x_t2m',              # Predictor Set 1
+    'x_t2m_ts',           # Predictor Set 2
+    'x_t2m_swd',          # Predictor Set 3
+    'x_t2m_ts_al2',       # Predictor Set 4
+    'x_t2m_al2',          # Predictor Set 5
+    'x_t2m_ts_al2_swd'    # Predictor Set 6
 ]
 
 # Numeric labels for predictor sets on x-axis
 # These labels intentionally appear out of numerical order
-predictor_labels = ['1', '2', '5', '4', '3', '6']
+predictor_labels = ['1', '2', '3', '4', '5', '6']
 
 # Custom colors for each catchment
 catchment_colors = {
-    'AK4': '#be128a',
-    'Minturn': '#1f78b4',
-    'Rio Behar': '#ff7f00'
+    'AK4': '#CC6677',       # salmon
+    'Minturn': '#332288',   # purple
+    'Rio Behar': '#88CCEE'  # light blue
 }
 
 # Horizontal offsets so overlapping points are visible
@@ -236,7 +236,7 @@ plt.axhline(
 
 # Formatting
 plt.xlabel('Predictor Set', fontsize=16)
-plt.ylabel(r'$\Delta$BIC relative to air temperature', fontsize=16)
+plt.ylabel(r'$\Delta$BIC relative to Predictor Set 1', fontsize=16)
 
 plt.xticks(
     x_positions,
