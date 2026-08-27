@@ -148,8 +148,7 @@ for i, (name, df, model, xscaler_path, yscaler_path) in enumerate(catchments):
     )
 
     ax.set_title(name, fontsize=22)
-    if i == 0:
-        ax.set_xlabel("Meltwater runoff from MAR (mmWE)", fontsize=20)
+    ax.set_xlabel("Meltwater runoff from MAR (mmWE)", fontsize=20)
 
     if i == 0:
         ax.set_ylabel(
