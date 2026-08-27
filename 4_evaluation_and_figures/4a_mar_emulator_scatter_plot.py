@@ -8,6 +8,7 @@ import joblib
 from sklearn.metrics import r2_score
 import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.dates as mdates
 
 
 def regression_p_value(x, y):
@@ -60,7 +61,6 @@ ak4_model = tf.keras.models.load_model(
 minturn_model = tf.keras.models.load_model(
     'trained_catchment_MLPs/minturn_mar_mlp.keras'
 )
-
 
 # Catchment configuration
 catchments = [
@@ -202,20 +202,28 @@ for name, df, model, xscaler_path, yscaler_path in catchments:
     plot_df = plot_df.sort_values("datetime")
     plot_df["year"] = plot_df["datetime"].dt.year
     years = sorted(plot_df["year"].unique())
+    
+    ncols = 3
+    nrows = int(np.ceil(len(years) / ncols))
 
     fig, axes = plt.subplots(
-        len(years),
-        1,
-        figsize=(14, 3.2 * len(years)),
-        sharex=False
-    )
+        nrows,
+        ncols,
+        figsize=(20, 2.8 * nrows),
+        sharex=False,
+        gridspec_kw={"wspace": 0.35, "hspace": 0.65}
+        )
+    axes = np.atleast_1d(axes).flatten()
 
     if len(years) == 1:
         axes = [axes]
 
     for ax, year in zip(axes, years):
 
-        yearly = plot_df[plot_df["year"] == year]
+        yearly = plot_df[
+            (plot_df["year"] == year) &
+            (plot_df["datetime"].dt.month.between(5, 9))
+        ]
 
         ax.plot(
             yearly["datetime"],
@@ -232,22 +240,38 @@ for name, df, model, xscaler_path, yscaler_path in catchments:
             alpha=0.85
         )
 
-        ax.set_title(f"{name} — {year}", fontsize=16)
-        ax.set_ylabel("Runoff (mmWE)", fontsize=13)
+        ax.set_title(f"{year}", fontsize=20)
+        ax.set_ylabel("Runoff (mmWE)", fontsize=18)
         ax.grid(True, linestyle="--", linewidth=0.7, alpha=0.6)
-        ax.tick_params(axis="both", labelsize=12)
+        ax.tick_params(axis="both", labelsize=18)
+        ax.xaxis.set_major_locator(mdates.MonthLocator())
+        ax.xaxis.set_major_formatter(mdates.DateFormatter("%b"))
+        #plt.setp(ax.get_xticklabels(), rotation=45, ha="right")
 
-    axes[-1].set_xlabel("Date", fontsize=14)
-    axes[0].legend(fontsize=12)
-
+    axes[-1].set_xlabel("Date", fontsize=18)
+    axes[0].legend(fontsize=14)
+    
+    # Hide unused panels in the final row
+    for ax in axes[len(years):]:
+        ax.set_visible(False)
+    
     fig.suptitle(
-        f"{name}: MAR vs Emulator Daily Meltwater Runoff",
-        fontsize=18,
-        y=1.002
+        f"{name} Hydrographs",
+        fontsize=24,
+        y=0.995
     )
 
-    plt.tight_layout()
+    fig.subplots_adjust(
+        left=0.07,
+        right=0.98,
+        bottom=0.04,
+        top=0.96,
+        wspace=0.35,
+        hspace=0.65
+    )
+
     plt.show()
+
 
 # Cumulative melt-season runoff plots by year
 for name, df, model, xscaler_path, yscaler_path in catchments:
