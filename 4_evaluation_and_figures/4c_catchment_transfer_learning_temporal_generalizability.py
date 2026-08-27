@@ -8,20 +8,21 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from tensorflow.keras.losses import MeanSquaredError
 from tensorflow.keras.optimizers import Adam
+from matplotlib.ticker import FormatStrFormatter
 
 # Catchment configuration
 catchments = {
     "AK4": {
-        "data": "/Users/maya/Documents/Duke University/DeepMelt/catchment-scale/catchment in-situ data/ak4_catchment_mar_tl.csv",
-        "base_model": "./catchment_MAR_emulators/ak4_mar_mlp.keras"
+        "data": "/Users/mlm211/Documents/DeepMelt/catchment-scale/catchment in-situ data/ak4_catchment_mar_tl.csv",
+        "base_model": "./trained_catchment_MLPs/ak4_mar_mlp.keras"
     },
     "Rio Behar": {
-        "data": "/Users/maya/Documents/Duke University/DeepMelt/catchment-scale/catchment in-situ data/rio_behar_catchment_mar_tl.csv",
-        "base_model": "./catchment_MAR_emulators/rb_mar_mlp.keras"
+        "data": "/Users/mlm211/Documents/DeepMelt/catchment-scale/catchment in-situ data/rio_behar_catchment_mar_tl.csv",
+        "base_model": "./trained_catchment_MLPs/rb_mar_mlp.keras"
     },
     "Minturn": {
-        "data": "/Users/maya/Documents/Duke University/DeepMelt/catchment-scale/catchment in-situ data/minturn_catchment_mar_tl.csv",
-        "base_model": "./catchment_MAR_emulators/minturn_mar_mlp.keras"
+        "data": "/Users/mlm211/Documents/DeepMelt/catchment-scale/catchment in-situ data/minturn_catchment_mar_tl.csv",
+        "base_model": "./trained_catchment_MLPs/minturn_mar_mlp.keras"
     }
 }
 
@@ -208,8 +209,21 @@ for name, cfg in catchments.items():
 
 ensemble_results_df = pd.DataFrame(ensemble_results)
 
-fig, axes = plt.subplots(2, 2, figsize=(24, 16))
-axes = axes.flatten()
+fig = plt.figure(figsize=(24, 18), layout="constrained")
+
+
+gs = fig.add_gridspec(
+    2, 7,
+    height_ratios=[1.1, 1],
+    hspace=0.35,
+    wspace=0.55
+)
+
+axes = {
+    "AK4": fig.add_subplot(gs[0, :]),      # spans the full top row
+    "Minturn": fig.add_subplot(gs[1, :3]),
+    "Rio Behar": fig.add_subplot(gs[1, 4:])
+}
 
 model_order = [
     "MAR emulator: withheld melt season",
@@ -233,11 +247,24 @@ years_order = {
 }
 
 # Common y-axis limits for all subplots
-ymin = 0
+ymin = ensemble_results_df["Error Rate"].min() - 0.05
 ymax = ensemble_results_df["Error Rate"].max() * 1.05
-yticks = np.linspace(ymin, ymax, 6)
 
-for ax, catchment in zip(axes, catchments.keys()):
+yticks = np.arange(
+    np.floor(ymin * 10) / 10,
+    np.ceil(ymax * 10) / 10 + 0.1,
+    0.1
+)
+
+plot_order = [
+    "AK4",
+    "Minturn",
+    "Rio Behar"
+]
+
+for catchment in plot_order:
+
+    ax = axes[catchment]
 
     plot_df = ensemble_results_df[
         ensemble_results_df["Catchment"] == catchment
@@ -259,6 +286,11 @@ for ax, catchment in zip(axes, catchments.keys()):
             ]["Error Rate"].values
 
             data.append(vals)
+            
+        if catchment == "AK4":
+            x = np.arange(len(years)) * 1.25
+        else:
+            x = np.arange(len(years))
 
         bp = ax.boxplot(
             data,
@@ -278,7 +310,14 @@ for ax, catchment in zip(axes, catchments.keys()):
     ax.set_xticks(x)
     ax.set_xticklabels(years, rotation=45)
 
-    ax.set_title(catchment, fontsize=24)
+    # Put the panel title inside the plotting area.
+    ax.text(
+        0.5, 0.96, catchment,
+        transform=ax.transAxes,
+        ha="center", va="top",
+        fontsize=28,
+        bbox=dict(facecolor="white", edgecolor="none", alpha=0.8, pad=2)
+    )
 
     ax.grid(
         True,
@@ -288,18 +327,19 @@ for ax, catchment in zip(axes, catchments.keys()):
         alpha=0.6
     )
 
-    ax.tick_params(axis="both", labelsize=20)
+    ax.tick_params(axis="both", labelsize=24)
 
     # Same y-axis scale across all panels
     ax.set_ylim(ymin, ymax)
     ax.set_yticks(yticks)
+    ax.yaxis.set_major_formatter(FormatStrFormatter('%.2f'))
 
 # Axis labels
-axes[0].set_ylabel("Error Rate", fontsize=20)
-axes[2].set_ylabel("Error Rate", fontsize=20)
+# Axis labels
+axes["AK4"].set_ylabel("Error Rate", fontsize=24)
 
-axes[2].set_xlabel("Melt Season Predicted", fontsize=20)
-axes[3].set_xlabel("Melt Season Predicted", fontsize=20)
+for ax in axes.values():
+    ax.set_xlabel("")
 
 # Create legend manually
 from matplotlib.patches import Patch
@@ -309,12 +349,28 @@ legend_handles = [
     for m in model_order
 ]
 
-fig.legend(
+# Keep the legend inside the wide top panel.
+axes["AK4"].legend(
     handles=legend_handles,
-    loc="upper center",
-    ncol=3,
-    fontsize=20
+    loc="upper right",
+    fontsize=20,
+    frameon=True
 )
 
-plt.tight_layout(rect=[0, 0, 1, 0.95])
 plt.show()
+
+
+# Mean error rate by catchment and TL model
+mean_error_rates = (
+    ensemble_results_df[
+        ensemble_results_df["Model"].isin([
+            "TL model: withheld melt season",
+            "TL model: all melt seasons"
+        ])
+    ]
+    .groupby(["Catchment", "Model"])["Error Rate"]
+    .mean()
+    .reset_index()
+)
+
+print(mean_error_rates)
